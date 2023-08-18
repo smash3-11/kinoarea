@@ -16,30 +16,26 @@
     sans-serif;
 }
 body {
+  position: relative;
   background: #1e2538;
 }
 
-/* Стили для полосы прокрутки */
-/* Ширина и высота полосы прокрутки */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
 }
 
-/* Оформление фона полосы прокрутки */
 ::-webkit-scrollbar-track {
   background-color: #1e253b;
 }
 
-/* Оформление полосы прокрутки */
 ::-webkit-scrollbar-thumb {
   background-color: #1e253b;
   border-radius: 5px;
 }
 
-/* Оформление полосы прокрутки при наведении */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #39414a; /* Можно использовать другой цвет при наведении */
+  background-color: #39414a;
 }
 
 img {
@@ -50,6 +46,27 @@ img {
   margin: 0 auto;
   padding: 0 20px;
 }
+
+.bg {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  // background: #e4e802;
+  opacity: 0.6;
+  height: 100vh;
+  transition: 0.5s ease-in;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  // background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+  box-shadow:
+    inset 0px -20px 20px 6px rgb(43 39 69 / 79%),
+    0px -12px 10px -10px rgb(37 16 235 / 41%);
+}
+
 .header-first,
 .header-second header {
   margin-bottom: 30px;
@@ -212,26 +229,28 @@ img {
   justify-content: center;
   margin: 0 0 60px 0;
 
+  .c {
+    position: relative;
+  }
+  .h {
+    border-radius: 10px;
+    background: #7693ff85;
+    position:relative;
+  }
+  
   .item {
     height: 380px;
-    background: #3656cb98;
-    // background: #2fac3f;
+    background: url(../public/oppenheimer.jpg) no-repeat center / cover;
+    background-position: center;
+    background-size: cover;
+    transition: 0.5s ease;
     border-radius: 10px;
     margin: 0 0 10px 0;
-    cursor: pointer;
     position: relative;
-    // .h {
-    //   transition: background 0.5s ease;
-    //   cursor: pointer;
-    // }
-    .h:hover {
-      background: #3657cb;
-      opacity: 0.7;
-      transition: 0.5s ease;
-    }
+
     .rating {
       position: absolute;
-      right: 20px;
+      right: 8px;
       top: 10px;
       // width: 64px;
       // height: 30px;
@@ -241,13 +260,45 @@ img {
       color: white;
     }
   }
+
+  .item:hover {
+    // z-index: 4;
+    opacity: .8;
+    transition: 0.5s ease;
+    .info_movie {
+      position: absolute;
+      opacity: 1;
+      z-index: 9;
+    }
+  }
+
+  .info_movie {
+    position: absolute;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+    left: 25%;
+    top: 45%;
+    width: 133px;
+    border-radius: 8px;
+    height: 35px;
+    background: #ffff;
+    padding: 4px 0 0 0;
+    p {
+      color: rgb(86, 81, 237);
+      text-align: center;
+      font-size: 17px;
+    }
+    
+  }
+
   .text {
     font-size: 18px;
     color: white;
     padding-left: 5px;
     .genre_item {
       color: #f2f60f;
-      font-size: 15px;
+      font-size: 13px;
       font-style: normal;
       font-weight: 400;
     }
@@ -268,7 +319,11 @@ img {
     border: 1px solid white;
     border-radius: 10px;
     cursor: pointer;
+    scale: 1;
     background: #1e253800;
+    :hover {
+      scale: 1.2;
+    }
   }
 }
 .headline {
@@ -292,11 +347,9 @@ img {
   gap: 10px;
   align-items: center;
   cursor: pointer;
-
 }
 .trailer {
-  
- color: #ffff;
+  color: #ffff;
   .item_video {
     position: relative;
     // width: 100px;
@@ -305,7 +358,7 @@ img {
     border-radius: 10px;
     margin: 0 0 20px 0;
   }
-  
+
   .triangle_play {
     position: absolute;
     top: 50%;
@@ -321,5 +374,4 @@ img {
     font-size: 35px;
     font-weight: 600;
   }
-  
 }

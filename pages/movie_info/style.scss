@@ -1,0 +1,158 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+}
+
+.bg {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  // background: #e4e802;
+  opacity: 0.5;
+  height: 100vh;
+  transition: 0.5s ease-in;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  // background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+  box-shadow:
+    inset 0px -20px 20px 6px rgb(43 39 69 / 79%),
+    0px -12px 10px -10px rgb(37 16 235 / 41%);
+}
+
+.box_about {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 65px 105px 0;
+  color: #ffff;
+
+  .c {
+    position: relative;
+    // margin: 20px 0 0 0;
+  }
+  .h {
+    border-radius: 10px;
+    background: #7693ff85;
+    position: relative;
+  }
+
+  .item {
+    height: 380px;
+    width: 260px;
+
+    background: url(./public/oppenheimer.jpg) no-repeat center / cover;
+    background-position: center;
+    background-size: cover;
+    transition: opasity .5s ease;
+    border-radius: 10px;
+    margin: 0 0 10px 0;
+    position: relative;
+  }
+
+  .info_movie {
+    position: absolute;
+    z-index: 5;
+    opacity: 0;
+    left: 25%;
+    top: 45%;
+    width: 133px;
+    border-radius: 8px;
+    height: 35px;
+    background: #ffff;
+    padding: 4px 0 0 0;
+    p {
+      color: rgb(86, 81, 237);
+      text-align: center;
+      font-size: 17px;
+    }
+  }
+
+  .reaction {
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+    .like_finger,
+    .dislike,
+    .like {
+      height: 40px;
+      width: 40px;
+      border-radius:5px;
+      background: #fff4;
+      cursor: pointer;
+    }
+    .reaction_raating {
+      cursor: pointer;
+      width: 100px;
+      background: #fff4;
+      height: 40px;
+      border-radius: 8px
+    }
+  }
+
+  .about_movie {
+    margin: 0 0 0 50px;
+
+    .chart {
+      display: flex;
+      gap: 20px;
+      margin: 20px 0 0 0;
+      .imd,
+      .kinoarea {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 8px #51d445 solid;
+      }
+    }
+  }
+  h2 {
+    font-weight: 700;
+  }
+  .origin_title {
+    font-weight: 500;
+    
+  }
+  .about_text {
+    margin-top: 10px;
+    padding: 10px;
+    color: white;
+
+    max-height: 7em;
+    overflow: hidden;
+    position: relative;
+
+    p {
+      letter-spacing: 1px;
+      font-weight: 500;
+    }
+  }
+  .whatch_trailer {
+    border: 2px solid #ffff;
+    border-radius: 10px;
+    height: 50px;
+    width: 180px;
+    margin: 25px 0 25px 0;
+    background: #0000;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+  }
+}
