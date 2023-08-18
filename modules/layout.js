@@ -2,7 +2,6 @@ import { headerApi } from "/modules/http.js";
 
 
 let bgPoster = document.querySelector('.bg')
-let box = document.querySelector('.box')
 let showingAllPosters = false
 
 fetch('https://api.themoviedb.org/3/genre/movie/list', headerApi() )
