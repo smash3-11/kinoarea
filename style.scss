@@ -164,7 +164,10 @@ img {
     }
   }
 }
-.genre, .popular_films, .popular_persons {
+.genre,
+.popular_films,
+.popular_persons,
+.last_news {
   display: flex;
   align-items: center;
   gap: 75px;
@@ -195,7 +198,7 @@ img {
 .active_genre {
   color: #f2f60f;
 }
-.popular_persons {
+.popular_persons, .last_news {
   justify-content: space-between;
   .scroll {
     width: 25%;
@@ -215,7 +218,9 @@ img {
   padding: 0;
   // height: 26px;
 }
-.box, .popular_box {
+.box,
+.popular_box, 
+.box_office {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
@@ -249,7 +254,7 @@ img {
       // height: 30px;
       padding: 4px 12px;
       background: #51d445;
-      border-radius: 12px;
+      border-radius: 6px;
       color: white;
     }
   }
@@ -307,6 +312,38 @@ img {
     }
   }
 }
+
+.popular_box {
+  .item {
+    height: 400px;
+  }
+}
+.box_office{
+ 
+  .c {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .item {
+    width: 110px;
+    height: 180px;
+    cursor:pointer;
+  }
+  .rating {
+    display: none;
+  }
+  .k {
+    display: none;
+  }
+  .info_movie {
+    left: 13%;
+    top: 45%;
+    width: 100px;
+    height: 35px;
+    padding: 5px 0 0 0;
+  }
+}
 .carousel_pagin {
   margin-bottom: 30px;
 }
@@ -348,7 +385,8 @@ img {
   font-weight: 600;
   color: white;
 }
-.all_trailer {
+.all_trailer,
+.all_news {
   display: flex;
   gap: 10px;
   align-items: center;
@@ -360,6 +398,7 @@ img {
     position: relative;
     padding: 0 15px;
     height: 90vh;
+    max-height: 650px;
     // background-color: #f2f60f;
     // border-radius: 10px;
     margin: 0 0 20px 0;
@@ -420,7 +459,7 @@ img {
     img {
       width: 30px;
       height: 30px;
-      cursor:pointer;
+      cursor: pointer;
     }
   }
   .list_trailer_movie {
@@ -470,37 +509,141 @@ img {
     .item_movie_title {
       font-size: 18px;
       font-weight: 600;
-      margin:  10px 0 0 10px;
+      margin: 10px 0 0 10px;
     }
-
   }
 }
-// .popular_films {
-  
-//     display: flex;
-//     align-items: center;
-//     gap: 75px;
-//     color: white;
-//     margin: 0 0 25px 0;
-  
-//     h2 {
-//       font-size: 47px;
-//       font-weight: 600;
-//     }
-//     .scroll {
-//       display: flex;
-//       gap: 30px;
-//       width: 40%;
-//       overflow-x: scroll;
-//       scrollbar-width: none;
-//       -ms-overflow-style: none;
-//       span {
-//         cursor: pointer;
-//         font-size: 18px;
-//         font-weight: 400;
-//       }
-//     }
-//     .scroll::-webkit-scrollbar {
-//       display: none;
-//     }
-//   }
+
+.person_info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: 20px;
+  // position: relative;
+  margin: 30px 0;
+
+  .rating_person,
+  .pers_year {
+    position: absolute;
+    color: #f2f60f;
+  }
+  .person_item {
+    position: relative;
+    border-radius: 10px;
+    // margin:8% 0 20% 0;
+    height: 315px;
+    color: #ffff;
+    background: #39414a;
+    box-shadow: inset 0px -11px 20px 5px #0000003a;
+    padding: 10px;
+  }
+  .person_text {
+    position: absolute;
+    bottom: 33px;
+    left: 26px;
+  }
+  .pers_name:first-child {
+    font-weight: 600;
+    font-size: 22px;
+  }
+  .pers_name:nth-child(2) {
+    color: #898585;
+  }
+  .person_item_list {
+    background: #39414a;
+    height: 315px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow-y: scroll;
+    padding: 10px;
+  }
+  .person_info_elem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    position: relative;
+    border-bottom: 1px solid #898585;
+    color: #ffff;
+  }
+  .p_name {
+    &:first-child {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    &:nth-child(2) {
+      color: #898585;
+    }
+  }
+  .p_year,
+  .ra {
+    color: #f2f60f;
+  }
+}
+
+.news_box {
+  display: flex;
+  align-items: center;
+  height: 500px;
+  justify-content: space-between;
+  margin: 10px 0 30px 0;
+
+  .main_news {
+    background: #3657cb;
+    height: 450px;
+    width: 75%;
+    border-radius: 12px;
+  }
+
+  .list_news {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 450px;
+    align-items: center;
+    overflow-y: scroll;
+  }
+  .news_item {
+    width: 240px;
+    min-height: 134px;
+    border-radius: 10px;
+    background: #f2f60f;
+    text-align: center;
+  }
+
+  .k {
+    border-radius: 8px;
+    padding: 18% 0 0px 28%;
+    width: 100%;
+    height: 100%;
+    background: #3656cbaf;
+    opacity: 0;
+    transition: 0.5s ease;
+    position: relative;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .read_more {
+    color: white;
+    border-radius: 8px;
+    height: 45px;
+    width: 114px;
+    cursor: pointer;
+    padding: 10px 0 0 0;
+    text-align: center;
+    border: 1px solid white;
+
+    p {
+      font-weight: 500;
+    }
+  }
+  .read_more:hover + .k,
+  .k:hover {
+    opacity: 1;
+  }
+}
