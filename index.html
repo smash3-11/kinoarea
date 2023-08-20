@@ -7,14 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   <link rel="stylesheet" href="style.scss">
   <title>Kinoarea</title>
 </head>
 
 <body>
   <div class="header-first">
-    <header><div class="container"></header>
+    <header>
+      <div class="container">
+    </header>
   </div>
   <!-- <div class="header-second">
 
@@ -73,8 +76,9 @@
       <div class="genre">
         <h2 class="title">Сейчас в кино</h2>
         <div class="line"></div>
-        <div class="scroll">
-          <span class="genre_active">Treiler</span>
+        <div class="scroll" id="genreContainer">
+          <span class="all_movies active_genre">All</span>
+          <!-- <span class="genre_active">Treiler</span>
           <span>Treiler</span>
           <span>Treiler</span>
           <span>Treiler</span>
@@ -88,28 +92,32 @@
           <span>Treiler</span>
           <span>Treiler</span>
           <span>Treiler</span>
-          <span>Treiler</span>
-          <span>Treiler</span>
+          <span>Treiler</span> -->
         </div>
 
       </div>
       <div class="content">
 
         <div class="box">
+
           <div class="c">
             <div class="h">
               <div class="item">
                 <span class="rating">9.9</span>
-                <div class="info_movie"><p>Movie info</p></div>
+                <div class="k">
+                  <div class="info_movie">
+                    <p>Movie info</p>
+                  </div>
+                </div>
 
               </div>
             </div>
             <div class="text">
-              <p class ="name_movie">Oppenheimer</p>
+              <p class="name_movie">Oppenheimer</p>
               <span class="genre_item">Drama, History</span>
             </div>
           </div>
-        
+
         </div>
         <div class="show_all_poster">
           <button class="btn_all">Показать все</button>
@@ -117,9 +125,8 @@
 
         <div class="trailer">
           <div class="headline">
-            <h2 class="title">
-              Новые трейлеры
-            </h2>
+
+            <h2 class="title">Новые трейлеры</h2>
             <div class="all_trailer">
               <p>Все трейлеры</p>
               <img src="/public/arrow1.svg" alt="">
@@ -127,17 +134,246 @@
           </div>
 
           <div class="item_video">
-          <span class="triangle_play"></span>
+            <iframe src="https://www.youtube.com/embed/C5q0ULg0nmY" title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+
+          <div class="trailer_info">
+
+            <div class="trailer_title">
+              <p class="name_trailer ">Something</p>
+            </div>
+            <div class="reaction">
+              <div class="like">
+                <img src="/public/like_op.svg" alt="">
+              </div>
+              <div class="dislike">
+                <img src="/public/dis_op.svg" alt="">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="list_trailer_movie">
+
+            <div class="el_trailer">
+
+              <div class="item_movie">
+                <div class="triangle_play"></div>
+                <div class="k"></div>
+              </div>
+              <p class="item_movie_title">Some movies </p>
+            </div>
+            <div class="el_trailer">
+
+              <div class="item_movie">
+                <div class="triangle_play"></div>
+                <div class="k"></div>
+              </div>
+              <p class="item_movie_title">Some movies </p>
+            </div>
+            <div class="el_trailer">
+
+              <div class="item_movie">
+                <div class="triangle_play"></div>
+                <div class="k"></div>
+              </div>
+              <p class="item_movie_title">Some movies </p>
+            </div>
+            <div class="el_trailer">
+
+              <div class="item_movie">
+                <div class="triangle_play"></div>
+                <div class="k"></div>
+              </div>
+              <p class="item_movie_title">Some movies </p>
+            </div>
+            <div class="el_trailer">
+
+              <div class="item_movie">
+                <div class="triangle_play"></div>
+                <div class="k"></div>
+              </div>
+              <p class="item_movie_title">Some movies </p>
+            </div>
+            <div class="el_trailer">
+
+              <div class="item_movie">
+                <div class="triangle_play"></div>
+                <div class="k"></div>
+              </div>
+              <p class="item_movie_title">Some movies </p>
+            </div>
+            <div class="el_trailer">
+
+              <div class="item_movie">
+                <div class="triangle_play"></div>
+                <div class="k"></div>
+              </div>
+              <p class="item_movie_title">Some movies </p>
+            </div>
+            <div class="el_trailer">
+
+              <div class="item_movie">
+                <div class="triangle_play"></div>
+                <div class="k"></div>
+              </div>
+              <p class="item_movie_title">Some movies </p>
+            </div>
+            <div class="el_trailer">
+
+              <div class="item_movie">
+                <div class="triangle_play"></div>
+                <div class="k"></div>
+              </div>
+              <p class="item_movie_title">Some movies </p>
+            </div>
+            <div class="el_trailer">
+
+              <div class="item_movie">
+                <div class="triangle_play"></div>
+                <div class="k"></div>
+              </div>
+              <p class="item_movie_title">Some movies </p>
+            </div>
+
+          </div>
+
+
         </div>
-        <p class="video_title">Forsaj</p>
-      
+
+        <div class="popular_films">
+
+          <h2 class="title">Popular films</h2>
+          <div class="line"></div>
+          <div class="scroll" id="yearContainer">
+            <span class="all_movies active_year">All</span>
+            <span class="genre_active">Treiler</span>
+            <span>Treiler</span>
+            <span>Treiler</span>
+            <span>Treiler</span>
+            <span>Treiler</span>
+            <span>Treiler</span>
+            <span>Treiler</span>
+            <span>Treiler</span>
+            <span>Treiler</span>
+            <span>Treiler</span>
+            <span>Treiler</span>
+            <span>Treiler</span>
+            <span>Treiler</span>
+            <span>Treiler</span>
+            <span>Treiler</span>
+          </div>
+
         </div>
-        
-          <!-- <p class="video_title">Forsaj</p> -->
+        <div class="popular_box">
+          <div class="c">
+
+            <div class="item">
+              <span class="rating">9.9</span>
+              <div class="k">
+                <div class="info_movie">
+                  <p>Movie info</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="text">
+              <p class="name_movie">Oppenheimer</p>
+              <span class="genre_item">Drama, History</span>
+            </div>
+          </div>
+          <div class="c">
+
+            <div class="item">
+              <span class="rating">9.9</span>
+              <div class="k">
+                <div class="info_movie">
+                  <p>Movie info</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="text">
+              <p class="name_movie">Oppenheimer</p>
+              <span class="genre_item">Drama, History</span>
+            </div>
+          </div>
+          <div class="c">
+
+            <div class="item">
+              <span class="rating">9.9</span>
+              <div class="k">
+                <div class="info_movie">
+                  <p>Movie info</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="text">
+              <p class="name_movie">Oppenheimer</p>
+              <span class="genre_item">Drama, History</span>
+            </div>
+          </div>
+          <div class="c">
+
+            <div class="item">
+              <span class="rating">9.9</span>
+              <div class="k">
+                <div class="info_movie">
+                  <p>Movie info</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="text">
+              <p class="name_movie">Oppenheimer</p>
+              <span class="genre_item">Drama, History</span>
+            </div>
+          </div>
         </div>
+
+        <div class="carousel_pagin">
+          <button class="left">-</button>
+              <span class="cound">0</span>
+              <span class="amound_cound">/9</span>
+              <button class="right">-</button>
+            </div>
+
+            <div class="popular_persons">
+
+              <h2 class="title">Popular persons</h2>
+              <!-- <div class="line"></div> -->
+              <div class="scroll" id="weekle">
+                <span class="active_year">All</span>
+                <span>Treiler</span>
+                <span>Treiler</span>
+                
+              </div>
+    
+            </div>
+
+            <div class="person_info">
+              <div class="person_item">
+                <span class="rating_person"></span>
+                <div class="person_text">
+                  <p class="pers_name">Tarantino</p>
+                  <p class="pers_name">Tarantino</p>
+                  <p class="pers_year">Tarantino</p>
+                </div>
+              </div>
+            </div>
+
 
 
       </div>
+
+
     </div>
 
   </main>
