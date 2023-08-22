@@ -482,7 +482,9 @@ img {
     }
 
     .item_movie {
-      background: grey;
+      // background: grey;
+      background-position: center;
+      background-size: cover;
       min-width: 285px;
       height: 160px;
       border-radius: 8px;
