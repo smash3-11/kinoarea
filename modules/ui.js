@@ -183,7 +183,7 @@ function reloadTrailer(arr) {
 
     itemMovie.onclick = () => {
       titleTr.innerHTML = item.title
-      fetchTrailer(item.id) 
+      fetchTrailer(item.id)
     }
 
     elTrailer.append(itemMovie)
@@ -198,21 +198,35 @@ fetch('https://api.themoviedb.org/3/genre/movie/list', headerApi())
   .then(res => res.json())
   .then(apiGenresData => {
     apiGenres = apiGenresData.genres
-    fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=2', headerApi())
+    fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', headerApi())
       .then(res => res.json())
       .then(res => {
         movies = res.results
         reloadPopFilms(movies, apiGenres)
       })
   })
+// fetch('https://api.themoviedb.org/3/genre/movie/list', headerApi())
+//   .then(res => res.json())
+//   .then(apiGenresData => {
+//     apiGenres = apiGenresData.genres
+//     fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', headerApi())
+//       .then(res => res.json())
+//       .then(res => {
+//         movies = res.results
+//         reloadPopFilms(movies, apiGenres)
+//       })
+//   })
+
+
 
 function reloadPopFilms(arr, apiGenres) {
   let popFilm = document.querySelector('.popular_box')
   popFilm.innerHTML = ''
+  
+  let nov = document.querySelector('.novelties_box')
+  nov.innerHTML = ''
 
   for (let item of arr) {
-
-
 
     let filmContainer = document.createElement('div')
     filmContainer.classList.add('c')
@@ -233,6 +247,12 @@ function reloadPopFilms(arr, apiGenres) {
     let infoMovieDiv = document.createElement('div')
     infoMovieDiv.classList.add('info_movie')
     infoMovieDiv.innerHTML = '<p>Movie info</p>'
+
+    infoMovieDiv.onclick = () => {
+      const movieId = item.id
+      location.assign(`/pages/movie_info/?id=${movieId}`)
+    }
+
     kDiv.append(infoMovieDiv)
     itemContainer.append(kDiv)
     filmContainer.append(itemContainer)
@@ -247,7 +267,7 @@ function reloadPopFilms(arr, apiGenres) {
 
     let genreSpan = document.createElement('span')
     genreSpan.classList.add('genre_item')
-    
+
     let genres = []
     for (let genre of apiGenres) {
       if (item.genre_ids.includes(genre.id)) {
@@ -257,48 +277,132 @@ function reloadPopFilms(arr, apiGenres) {
     genreSpan.innerHTML = genres.join(', ')
 
     textDiv.append(genreSpan)
-
     filmContainer.append(textDiv)
-
     popFilm.append(filmContainer)
-    // wrapper.append(filmContainer);
+    nov.append(filmContainer)
   }
 }
 
-// import Swiper from 'swiper';
-// import { Navigation, Pagination } from 'swiper/modules';
-// import 'swiper/css';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
+
+
+fetch(`https://api.themoviedb.org/3/person/popular?language=en-US&page=1`, headerApi())
+  .then(res => res.json())
+  .then(res => { reloadPopPers(res.results) })
+
+function reloadPopPers(arr) {
+
+  let elem = document.createElement('div')
+  elem.classList.add('person_item_list')
+  elem.innerHTML = ''
+
+  let ava_pers = document.querySelector('.person_info')
+  ava_pers.append(elem)
+
+  for (let k = 0; k < 2; k++) {
+    let pers_div = document.createElement('div')
+    pers_div.classList.add('person_item')
+    pers_div.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${arr[k].profile_path})`
+
+    let rating_span = document.createElement('span')
+    rating_span.classList.add('rating_person')
+    rating_span.innerHTML = `${k + 1} place`
+
+    let person_text_div = document.createElement('div')
+    person_text_div.classList.add('person_text')
+
+    let pers_name_p = document.createElement('p')
+    pers_name_p.classList.add('pers_name')
+    pers_name_p.innerHTML = arr[k].name
+    pers_name_p.onclick = () => {
+      const personeId = arr[k].id
+      location.assign(`/pages/actor_info/?id=${personeId}`)
+    }
+
+    let pers_year_p = document.createElement('p')
+    pers_year_p.classList.add('pers_year')
+    pers_year_p.innerHTML = `popularity ${Math.floor(arr[k].popularity)}`
+
+    person_text_div.append(pers_name_p)
+    person_text_div.append(pers_year_p)
+
+    pers_div.append(rating_span)
+    pers_div.append(person_text_div)
+
+    ava_pers.append(pers_div)
+  }
+
+  for (let i = 2; i < arr.length; i++) {
+    let elem_info = document.createElement('div')
+    elem_info.classList.add('person_info_elem')
+
+    let info_pers_div = document.createElement('div')
+    info_pers_div.classList.add('info_pers')
+
+    let p_name_p = document.createElement('p')
+    let p_n = document.createElement('p')
+
+    p_name_p.classList.add('p_name')
+    p_n.classList.add('p_name')
+    p_n.innerHTML = arr[i].name
+    p_name_p.innerHTML = arr[i].name
+    p_name_p.onclick = () => {
+      const personeId = arr[i].id
+      location.assign(`/pages/actor_info/?id=${personeId}`)
+    }
+
+    let p_year_p = document.createElement('p')
+    p_year_p.classList.add('p_year')
+    p_year_p.innerHTML = `popularity ${Math.floor(arr[i].popularity)}`
+
+    info_pers_div.append(p_name_p, p_n)
+    info_pers_div.append(p_year_p)
+
+    let ra_span = document.createElement('span')
+    ra_span.innerHTML = `${i + 1} place`
+    ra_span.classList.add('ra')
+
+    elem_info.append(info_pers_div)
+    elem_info.append(ra_span)
+
+    elem.append(elem_info)
+  }
+}
 
 
 
 
-// // // После загрузки данных
-// fetch('https://api.themoviedb.org/3/genre/movie/list', headerApi())
-//   .then(res => res.json())
-//   .then(apiGenresData => {
-//     apiGenres = apiGenresData.genres
-//     fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=2', headerApi())
-//       .then(res => res.json())
-//       .then(res => {
-//         movies = res.results
-//         reloadPopFilms(movies, apiGenres)
 
-//         // Инициализация Swiper
-//         new Swiper('.swiper-container', {
-//           modules: [Navigation, Pagination],
-//           slidesPerView: 4,
-//           spaceBetween: 20,
-//           pagination: {
-//             el: '.swiper-pagination',
-//             type: 'fraction', // Текущий и общий номер слайда
-//           },
-//           navigation: {
-//             nextEl: '.swiper-button-next',
-//             prevEl: '.swiper-button-prev',
-//           },
-//         });
-//       })
-//   })
+// // https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1
+
+// function reloadNovelties(arr){
+
+//   let nov = document.querySelector('.novelties_box')
+//   nov.innerHTML = `
+//   <div class="c">
+
+//   <div class="item">
+//     <span class="rating">9.9</span>
+//     <div class="k">
+//       <div class="info_movie">
+//         <p>Movie info</p>
+//       </div>
+//     </div>
+
+//   </div>
+
+//   <div class="text">
+//     <p class="name_movie">Oppenheimer</p>
+//     <span class="genre_item">Drama, History</span>
+//   </div>
+// </div>
+//   `
+
+// }
+
+
+
+
+
+
+
 

@@ -201,7 +201,7 @@ img {
 .popular_persons, .last_news {
   justify-content: space-between;
   .scroll {
-    width: 25%;
+    width: 30%;
   }
 }
 .line {
@@ -219,13 +219,15 @@ img {
   // height: 26px;
 }
 .box,
-.popular_box, 
+.popular_box,
+.novelties_box, 
 .box_office {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   justify-content: center;
   margin: 0 0 60px 0;
+  
 
   .c {
     position: relative;
@@ -313,11 +315,21 @@ img {
   }
 }
 
-.popular_box {
+.popular_box, .novelties_box {
+  display: flex;
+  // overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x: scroll;
+
+    transition: transform 0.5s ease-in-out;
   .item {
     height: 400px;
+    width: 250px;
+    // min-width: 200px;
   }
 }
+
 .box_office{
  
   .c {
@@ -532,11 +544,13 @@ img {
   .person_item {
     position: relative;
     border-radius: 10px;
-    // margin:8% 0 20% 0;
-    height: 315px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    height: 404px;
     color: #ffff;
     background: #39414a;
-    box-shadow: inset 0px -11px 20px 5px #0000003a;
+    box-shadow: inset 0px -11px 20px 11px rgb(0 0 0 / 52%);
     padding: 10px;
   }
   .person_text {
@@ -544,16 +558,19 @@ img {
     bottom: 33px;
     left: 26px;
   }
-  .pers_name:first-child {
+  .pers_name{
+    cursor: pointer;
+  &:first-child {
     font-weight: 600;
     font-size: 22px;
   }
+}
   .pers_name:nth-child(2) {
     color: #898585;
   }
   .person_item_list {
     background: #39414a;
-    height: 315px;
+    height: 404px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -573,6 +590,7 @@ img {
     color: #ffff;
   }
   .p_name {
+    cursor: pointer;
     &:first-child {
       font-size: 20px;
       font-weight: 600;

@@ -1,4 +1,4 @@
-// import { headerApi } from "/modules/http.js";
+import { headerApi } from "/modules/http.js"
 
 
 
@@ -6,32 +6,15 @@ fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', he
       .then((res) => res.json())
       .then((res) => console.log(res.results))
 
-// let movie_card = document.querySelector('.c')
-// movie_card.innerHTML = `
-//                 <div class="h">
-//                    <div class="item">
-//                     </div>
-//                   </div>
-//                   <div class="reaction">
-//                     <div class="like_finger"></div>
-//                     <div class="dislike"></div>
-//                     <div class="reaction_raating"></div>
-//                     <div class="like"></div>
-//                   </div>
-// `
 
-// /pages/movie_info/index.js
-import { headerApi } from "/modules/http.js";
-
-// Получаем параметр id из URL
-const urlParams = new URLSearchParams(window.location.search);
-const movieId = urlParams.get('id');
+const urlParams = new URLSearchParams(window.location.search)
+const movieId = urlParams.get('id')
 
 fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, headerApi())
     .then((res) => res.json())
     .then((movieData) => card_info(movieData))
     .catch((error) => {
-        console.error('Error fetching movie data:', error);
+        console.error('Error fetching movie data:', error)
     })
 
 
@@ -46,7 +29,7 @@ fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, headerApi(
         const movie_card = document.querySelector('.c')
         movie_card.innerHTML = `
             <div class="h">
-                <div class="item" style="background-image: url(https://image.tmdb.org/t/p/original${movieData.poster_path});"></div>
+                <div class="item" style="background-image: url(https://image.tmdb.org/t/p/original${movieData.poster_path})"></div>
             </div>
             <div class="reaction">
                 <div class="like_finger"></div>
