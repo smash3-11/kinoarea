@@ -37,15 +37,3 @@ function reloadHeader() {
     container.append(logo_div, nav, acc_div)
 }
 reloadHeader()
-
-    // const genreContainer = document.getElementById('genreContainer')
-    // fetch('https://api.themoviedb.org/3/genre/movie/list', headerApi() )
-    // .then((res) => res.json())
-    // .then((data) => {
-    //         const genres = data.genres
-    //         genres.forEach(genre => {
-    //             const spanElement = document.createElement('span')
-    //             spanElement.innerHTML = genre.name
-    //             genreContainer.append(spanElement)
-    //         })
-    //     })
