@@ -222,9 +222,7 @@ fetch('https://api.themoviedb.org/3/genre/movie/list', headerApi())
 function reloadPopFilms(arr, apiGenres) {
   let popFilm = document.querySelector('.popular_box')
   popFilm.innerHTML = ''
-  
-  let nov = document.querySelector('.novelties_box')
-  nov.innerHTML = ''
+
 
   for (let item of arr) {
 
@@ -279,7 +277,7 @@ function reloadPopFilms(arr, apiGenres) {
     textDiv.append(genreSpan)
     filmContainer.append(textDiv)
     popFilm.append(filmContainer)
-    nov.append(filmContainer)
+    // nov.append(filmContainer)
   }
 }
 
@@ -370,34 +368,79 @@ function reloadPopPers(arr) {
 
 
 
+fetch('https://api.themoviedb.org/3/genre/movie/list', headerApi())
+  .then(res => res.json())
+  .then(apiGenresData => {
+    apiGenres = apiGenresData.genres
+    fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', headerApi())
+      .then(res => res.json())
+      .then(res => {
+        movies = res.results
+        reloadNovFilms(movies, apiGenres)
+      })
+  })
+
+function reloadNovFilms(arr, apiGenres) {
+    
+  let nov = document.querySelector('.novelties_box')
+  nov.innerHTML = ''
+
+  for (let item of arr) {
+    
+    
+    let filmContainer = document.createElement('div')
+    filmContainer.classList.add('c')
+
+    let itemContainer = document.createElement('div')
+    itemContainer.classList.add('item')
+    itemContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.poster_path})`
 
 
-// // https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1
+    let ratingSpan = document.createElement('span')
+    ratingSpan.classList.add('rating')
+    ratingSpan.innerHTML = item.vote_average
+    itemContainer.append(ratingSpan)
 
-// function reloadNovelties(arr){
+    let kDiv = document.createElement('div')
+    kDiv.classList.add('k')
 
-//   let nov = document.querySelector('.novelties_box')
-//   nov.innerHTML = `
-//   <div class="c">
+    let infoMovieDiv = document.createElement('div')
+    infoMovieDiv.classList.add('info_movie')
+    infoMovieDiv.innerHTML = '<p>Movie info</p>'
 
-//   <div class="item">
-//     <span class="rating">9.9</span>
-//     <div class="k">
-//       <div class="info_movie">
-//         <p>Movie info</p>
-//       </div>
-//     </div>
+    infoMovieDiv.onclick = () => {
+      const movieId = item.id
+      location.assign(`/pages/movie_info/?id=${movieId}`)
+    }
 
-//   </div>
+    kDiv.append(infoMovieDiv)
+    itemContainer.append(kDiv)
+    filmContainer.append(itemContainer)
 
-//   <div class="text">
-//     <p class="name_movie">Oppenheimer</p>
-//     <span class="genre_item">Drama, History</span>
-//   </div>
-// </div>
-//   `
+    let textDiv = document.createElement('div')
+    textDiv.classList.add('text')
 
-// }
+    let nameMovieP = document.createElement('p')
+    nameMovieP.classList.add('name_movie')
+    nameMovieP.innerHTML = item.title
+    textDiv.append(nameMovieP)
+
+    let genreSpan = document.createElement('span')
+    genreSpan.classList.add('genre_item')
+
+    let genres = []
+    for (let genre of apiGenres) {
+      if (item.genre_ids.includes(genre.id)) {
+        genres.push(genre.name)
+      }
+    }
+    genreSpan.innerHTML = genres.join(', ')
+
+    textDiv.append(genreSpan)
+    filmContainer.append(textDiv)
+    nov.append(filmContainer)
+  }
+}
 
 
 

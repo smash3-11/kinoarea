@@ -170,7 +170,7 @@ img {
 .last_news {
   display: flex;
   align-items: center;
-  gap: 75px;
+  gap: 100px;
   color: white;
   margin: 0 0 25px 0;
 
@@ -198,7 +198,8 @@ img {
 .active_genre {
   color: #f2f60f;
 }
-.popular_persons, .last_news {
+.popular_persons,
+.last_news {
   justify-content: space-between;
   .scroll {
     width: 30%;
@@ -220,14 +221,13 @@ img {
 }
 .box,
 .popular_box,
-.novelties_box, 
+.novelties_box,
 .box_office {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   justify-content: center;
   margin: 0 0 60px 0;
-  
 
   .c {
     position: relative;
@@ -315,14 +315,15 @@ img {
   }
 }
 
-.popular_box, .novelties_box {
+.popular_box,
+.novelties_box {
   display: flex;
   // overflow: hidden;
   justify-content: space-between;
   align-items: center;
   overflow-x: scroll;
 
-    transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
   .item {
     height: 400px;
     width: 250px;
@@ -330,8 +331,7 @@ img {
   }
 }
 
-.box_office{
- 
+.box_office {
   .c {
     display: flex;
     gap: 8px;
@@ -340,7 +340,7 @@ img {
   .item {
     width: 110px;
     height: 180px;
-    cursor:pointer;
+    cursor: pointer;
   }
   .rating {
     display: none;
@@ -547,10 +547,10 @@ img {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover !important;
-    height: 404px;
+    height: 450px;
     color: #ffff;
     background: #39414a;
-    box-shadow: inset 0px -11px 20px 11px rgb(0 0 0 / 52%);
+    box-shadow: inset 0px -20px 20px 20px rgba(0, 0, 0, 0.52);
     padding: 10px;
   }
   .person_text {
@@ -558,19 +558,19 @@ img {
     bottom: 33px;
     left: 26px;
   }
-  .pers_name{
+  .pers_name {
     cursor: pointer;
-  &:first-child {
-    font-weight: 600;
-    font-size: 22px;
+    &:first-child {
+      font-weight: 600;
+      font-size: 22px;
+    }
   }
-}
   .pers_name:nth-child(2) {
     color: #898585;
   }
   .person_item_list {
     background: #39414a;
-    height: 404px;
+    height: 450px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -665,5 +665,113 @@ img {
   .read_more:hover + .k,
   .k:hover {
     opacity: 1;
+  }
+}
+footer {
+  background: #151a26;
+  padding:  0 0 30px 0;
+}
+.section_form {
+  // height: 100%;
+
+  .form_box {
+    width: 80%;
+    height: 380px;
+    margin: 0 0 30px 100px;
+    background-image: url(../public/fon.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 50px;
+    border-radius: 15px;
+
+    .main_logo {
+      text-align: center;
+      margin: 30px 0 0 0;
+    }
+    .text_sub {
+      text-align: center;
+      color: white;
+      .title {
+        font-size: 35px;
+        font-weight: 700;
+      }
+      p {
+        font-weight: 500;
+        width: 75%;
+        margin: 0 0 0 100px;
+      }
+    }
+    .form_sub {
+      color: white;
+      text-align: center;
+      margin: 17px 0 30px 0;
+
+      .em {
+        width: 35%;
+        height: 45px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        padding: 10px;
+        margin:  0 0 10px 0;
+
+      }
+      .btn_sub {
+        width: 20%;
+        height: 44px;
+        border: none;
+        border-radius: 5px;
+        background: #f2f60f;
+        font-weight: 400;
+        cursor: pointer;
+        font-size: 18px;
+        margin:  0 0 10px 0;
+      }
+      i {
+        color: #f2f60f;
+        cursor: pointer;
+      }
+      .ch {
+        margin-right: 10px ;
+      }
+    }
+    
+  }
+  .form_social {
+    margin:  0 0 0 43%;
+  }
+  .social {
+    display: flex;
+    width: 20%;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    & img {
+      width: 18px;
+      height: 18px;
+    }
+  }
+  .menu {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    a {
+      text-decoration: none;
+      color: white;
+
+    }
+  }
+  .create_date {
+    text-align: center;
+    color: rgb(170, 166, 166);
+    font-size: 12px;
+    .ki {
+      margin: 10px 0 30px 0;
+    }
+    .pol {
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 }
