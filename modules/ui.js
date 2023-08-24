@@ -205,19 +205,6 @@ fetch('https://api.themoviedb.org/3/genre/movie/list', headerApi())
         reloadPopFilms(movies, apiGenres)
       })
   })
-// fetch('https://api.themoviedb.org/3/genre/movie/list', headerApi())
-//   .then(res => res.json())
-//   .then(apiGenresData => {
-//     apiGenres = apiGenresData.genres
-//     fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', headerApi())
-//       .then(res => res.json())
-//       .then(res => {
-//         movies = res.results
-//         reloadPopFilms(movies, apiGenres)
-//       })
-//   })
-
-
 
 function reloadPopFilms(arr, apiGenres) {
   let popFilm = document.querySelector('.popular_box')

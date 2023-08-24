@@ -65,7 +65,7 @@
     background: url(./public/oppenheimer.jpg) no-repeat center / cover;
     background-position: center;
     background-size: cover;
-    transition: opasity .5s ease;
+    transition: opasity 0.5s ease;
     border-radius: 10px;
     margin: 0 0 10px 0;
     position: relative;
@@ -99,7 +99,7 @@
     .like {
       height: 40px;
       width: 40px;
-      border-radius:5px;
+      border-radius: 5px;
       background: #fff4;
       padding: 10px;
       cursor: pointer;
@@ -109,7 +109,7 @@
       width: 100px;
       background: #fff4;
       height: 40px;
-      border-radius: 8px
+      border-radius: 8px;
     }
   }
 
@@ -121,7 +121,7 @@
       width: 80px;
       border-radius: 50%;
       position: relative;
-      
+
       margin: 20px 0 0 0;
       .imd,
       .kinoarea {
@@ -137,7 +137,6 @@
   }
   .origin_title {
     font-weight: 500;
-    
   }
   .about_text {
     margin-top: 10px;
@@ -169,7 +168,7 @@ footer {
   margin: 50px 0 0 0;
   padding-top: 50px;
   .section_form {
-    margin:  55px 0 0 0 ;
+    margin: 55px 0 0 0;
   }
 }
 .text_info {
@@ -177,7 +176,7 @@ footer {
   justify-content: space-around;
   align-items: start;
   gap: 50px;
-  margin: 20px 0 20px 0 ;
+  margin: 20px 0 20px 0;
   color: #ffff;
 
   .left {
@@ -187,9 +186,8 @@ footer {
     width: 50%;
   }
 
-
   p {
-    ::first-letter{
+    ::first-letter {
       text-transform: uppercase;
     }
     line-height: 2.3;
@@ -201,9 +199,83 @@ footer {
     }
   }
 }
-// .main_roles {
-//   .actors_cards {
-//     display: grid;
-//     grid-template-columns: repeat(5, 1fr);
-//   }
-// }
+.main_roles {
+  color: #ffff;
+  .actors_cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    p {
+      padding-left: 6px;
+    }
+    margin: 0 0 20px 0;
+  }
+  .item_cards {
+    background: url(/public/no.svg) no-repeat center / cover;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 250px;
+    cursor: pointer;
+    border-radius: 5px;
+    &:hover {
+      opacity: 0.7;
+      transition: 0.5s ease;
+    }
+  }
+  .character {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 8px;
+    cursor: pointer;
+  }
+  .name {
+    color: #d4d1c4;
+  }
+  .org_name {
+    color: #fbdd00;
+    font-size: 14px;
+  }
+  .btn_b {
+    text-align: center;
+    width: 100px ;
+    padding: 7px;
+    border-radius: 7px;
+    color: #ffff;
+    height: 40px;
+    border: 1px solid yellow;
+    margin: 0 0 0 47%;
+    cursor: pointer;
+    transition: .5s ease;
+    margin-bottom: 30px;
+    .btn {
+      text-align: center;
+      border: none;
+      width: 100%;
+      height: 100%;
+      background: none;
+      color: #ffff;
+      font-size: 18px;
+      font-weight: 400;
+    }
+  }
+}
+
+.treiler_of_movie {
+
+  .change {
+    cursor: pointer;
+  }
+  .item_video {
+    height: 600px;
+    width: 100%;
+    border-radius: 15px;
+    margin:  0 0 100px 0;
+    iframe {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+    }
+  }
+}

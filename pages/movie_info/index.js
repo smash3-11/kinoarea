@@ -185,10 +185,6 @@ fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, headerApi(
         console.error('Error fetching movie data:', error)
     })
 
-// https://api.themoviedb.org/3/movie/{movie_id}
-fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US&page=1`, headerApi())
-    .then((res) => res.json())
-    .then((movieData) => console.log(movieData))
 
 let genre_ = document.querySelector('.genre_ span')
 let revenue = document.querySelector('.revenue span')
@@ -205,37 +201,134 @@ let author = document.querySelector('.author span')
 let produser = document.querySelector('.produser span')
 let kompositor = document.querySelector('.kompositor span')
 
+// ACTORS ROLES 
+
+
+
 fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, headerApi())
-  .then((res) => res.json())
-  .then((movieData) => {
-    genre_.innerHTML = movieData.genres.map(genre => genre.name).join(', ')
-    revenue.innerHTML = `${movieData.revenue} $` 
-    budget.innerHTML = `${movieData.budget} $`
-    runtime.innerHTML = `${movieData.runtime} min`
-    status.innerHTML = movieData.status
-    production_companies.innerHTML = movieData.production_companies.map(company => company.name).join(', ')
-    release_date.innerHTML = movieData.release_date
-    production_countries.innerHTML = movieData.production_countries.map(country => country.name).join(', ')
-    tagline.innerHTML = movieData.tagline
-  })
+    .then((res) => res.json())
+    .then((movieData) => {
+        genre_.innerHTML = movieData.genres.map(genre => genre.name).join(', ')
+        revenue.innerHTML = `${movieData.revenue} $`
+        budget.innerHTML = `${movieData.budget} $`
+        runtime.innerHTML = `${movieData.runtime} min`
+        status.innerHTML = movieData.status
+        production_companies.innerHTML = movieData.production_companies.map(company => company.name).join(', ')
+        release_date.innerHTML = movieData.release_date
+        production_countries.innerHTML = movieData.production_countries.map(country => country.name).join(', ')
+        tagline.innerHTML = movieData.tagline
+    })
 
 
 function fillCreditsData(movieId) {
     fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US&page=1`, headerApi())
-      .then((res) => res.json())
-      .then((creditsData) => {
-        // Найдем информацию о режиссере (Director), продюсере (Producer) и композиторе (Composer)
-        const director = creditsData.crew.find(member => member.job === 'Director')
-        const producer = creditsData.crew.find(member => member.job === 'Producer')
-        const composer = creditsData.crew.find(member => member.job === 'Executive Producer')
-  
-        author.innerHTML = director ? director.name : 'Н/Д'
-        produser.innerHTML = producer ? producer.name : 'Н/Д'
-        kompositor.innerHTML = composer ? composer.name : 'Н/Д'
-      })
-      .catch((error) => {
-        console.error('Ошибка при получении данных:', error)
-      })
-  }
-  
-  fillCreditsData(movieId)
+        .then((res) => res.json())
+        .then((creditsData) => {
+
+            const director = creditsData.crew.find(member => member.job === 'Director')
+            const producer = creditsData.crew.find(member => member.job === 'Producer')
+            const composer = creditsData.crew.find(member => member.job === 'Executive Producer')
+
+            author.innerHTML = director ? director.name : 'N/F'
+            produser.innerHTML = producer ? producer.name : 'N/F'
+            kompositor.innerHTML = composer ? composer.name : 'N/F'
+        })
+        .catch((error) => {
+            console.error('Ошибка при получении данных:', error)
+        })
+}
+
+fillCreditsData(movieId)
+
+
+fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US&page=1`, headerApi())
+    .then((res) => res.json())
+    .then((acData) => {
+        movieActors(acData.cast)
+    })
+
+    let showingAllPosters = false
+
+
+function movieActors(arr) {
+    let actors_box = document.querySelector('.actors_cards')
+    actors_box.innerHTML = ""
+    let btn = document.querySelector('.btn_b')
+   
+    
+    
+  const toShow = showingAllPosters ? arr.length : 10
+
+    for (let item of arr.slice(0, toShow)) {
+        let item_act = document.createElement('div')
+        item_act.classList.add('a')
+
+        let item_div = document.createElement('div')
+        item_div.classList.add('item_cards')
+        
+        item_div.onclick = () => {
+            const movieId = item.id
+            location.assign(`/pages/actor_info/?id=${movieId}`)
+        }
+
+        if (item.profile_path) {
+            item_div.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.profile_path})`
+        } else {
+            item_div.style.backgroundImage = `url(/public/no.svg)`
+        }
+
+        let char = document.createElement("p")
+        char.classList.add("character")
+        char.innerHTML = `${item.original_name}`
+        char.onclick = () => {
+            const movieId = item.id
+            location.assign(`/pages/actor_info/?id=${movieId}`)
+        }
+
+        let name = document.createElement("p")
+        name.classList.add("name")
+        name.innerHTML = `${item.name}`
+
+        let orgName = document.createElement("p")
+        orgName.classList.add("org_name")
+        orgName.innerHTML = `${item.character}`
+
+        btn.innerHTML = showingAllPosters ? 'Hide' : 'Show All'
+        btn.onclick = () => {
+          showingAllPosters = !showingAllPosters
+          movieActors(arr)
+        }
+
+        item_act.append(item_div)
+        item_act.append(char)
+        item_act.append(name)
+        item_act.append(orgName)
+        actors_box.append(item_act)
+
+        
+    }
+}
+
+    let iframe = document.querySelector('.item_video iframe')
+    let nextTrailer = document.querySelector('.change')
+    
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos`, headerApi())
+        .then(res => res.json())
+        .then(res => {
+            if (res.results.length > 0) {
+                let videoKeys = res.results.map(result => result.key)
+                let currentVideoIndex = Math.floor(Math.random() * videoKeys.length)
+    
+                function changeVideo() {
+                    currentVideoIndex = (currentVideoIndex + 1) % videoKeys.length
+                    let videoKey = videoKeys[currentVideoIndex]
+                    iframe.src = `https://www.youtube.com/embed/${videoKey}`
+                }
+    
+                iframe.src = `https://www.youtube.com/embed/${videoKeys[currentVideoIndex]}`
+    
+                nextTrailer.ondblclick = changeVideo
+            }
+        })
+    
+
