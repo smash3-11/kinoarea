@@ -14,10 +14,13 @@
     "Open Sans",
     "Helvetica Neue",
     sans-serif;
-}
-body {
-  position: relative;
-  background: #1e2538;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    position: relative;
+    background: #1e2538;
 }
 
 ::-webkit-scrollbar {
@@ -77,6 +80,7 @@ img {
   }
   .main_logo {
     margin-bottom: 5px;
+    cursor:pointer
   }
   .social {
     display: flex;
@@ -688,6 +692,7 @@ footer {
     .main_logo {
       text-align: center;
       margin: 30px 0 0 0;
+      cursor: pointer;
     }
     .text_sub {
       text-align: center;

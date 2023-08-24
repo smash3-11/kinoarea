@@ -21,10 +21,10 @@ function reloadHeader() {
     nav.classList.add('menu')
     nav.innerHTML = `
       <a href="">Афиша</a>
-      <a href="">Медиа</a>
-      <a href="">Фильмы</a>
-      <a href="">Актеры</a>
-      <a href="">Новости</a>
+      <a href="#media">Медиа</a>
+      <a href="#pop_films">Фильмы</a>
+      <a href="#actors">Актеры</a>
+      <a href="#news">Новости</a>
       <a href="">Подборки</a>
       <a href="">Категории</a>
       `

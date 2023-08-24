@@ -96,6 +96,7 @@
       width: 40px;
       border-radius:5px;
       background: #fff4;
+      padding: 10px;
       cursor: pointer;
     }
     .reaction_raating {
@@ -110,16 +111,16 @@
   .about_movie {
     margin: 0 0 0 50px;
 
-    .chart {
-      display: flex;
-      gap: 20px;
+    .chart_div {
+      height: 80px;
+      width: 80px;
       margin: 20px 0 0 0;
       .imd,
       .kinoarea {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        border: 8px #51d445 solid;
+        border: 8px #51d44590 solid;
       }
     }
   }
