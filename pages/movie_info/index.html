@@ -1,59 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/public/movie1.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Information of movie</title>
-    <link rel="stylesheet" href="/style.scss">
-    <link rel="stylesheet" href="style.scss">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/public/movie1.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Information of movie</title>
+  <link rel="stylesheet" href="/style.scss">
+  <link rel="stylesheet" href="style.scss">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
-<body>
-    <div class="header-first">
-        <header><div class="container"></header>
-      </div>
-      <div class="bg"></div>
-      <main>
-        <div class="container">
-            <div class="box_about">
-                <div class="c">
-                  <div class="h">
-                    <div class="item">
-                      
-                    </div>
-                  </div>
-                  <div class="reaction">
-                    <div class="like_finger"></div>
-                    <div class="dislike"></div>
-                    <div class="reaction_raating"></div>
-                    <div class="like"></div>
-                  </div>
-                 </div>
-              
 
-                <div class="about_movie">
-                    <h2 class="title"></h2>
+<body>
+  <div class="header-first">
+    <header>
+      <div class="container">
+    </header>
+  </div>
+  <div class="bg"></div>
+  <main>
+    <div class="container">
+      <div class="box_about">
+        <div class="c">
+          <div class="h">
+            <div class="item">
+
+            </div>
+          </div>
+          <div class="reaction">
+            <div class="like_finger"></div>
+            <div class="dislike"></div>
+            <div class="reaction_raating"></div>
+            <div class="like"></div>
+          </div>
+        </div>
+
+
+        <div class="about_movie">
+          <!-- <h2 class="title"></h2>
                     <p class="origin_title"></p>
 
+                    <span class="ra"></span>
                     <div class="chart_div">
-                        <!-- <div class="imd"></div>
-                        <div class="kinoarea"></div> -->
+                        
                     </div>
 
                     <div class="about_text">
                         <p class="inform"></p>
-                    </div>
-                    <button class="whatch_trailer">Whatch trailer</button>
-                </div>
-      
-              </div>
+                    </div> -->
+          <button class="whatch_trailer">Whatch trailer</button>
+        </div>
+
+      </div>
+
+      <div class="text_info">
+        <div class="left">
+
+          <p class="release_date">Release date: <span></span> </p>
+          <p class="production_countries">Production countries: <span></span></p>
+          <p class="tagline">tagline: <span></span></p>
+          <p class="author">Director: <span></span></p>
+          <p class="produser">Producer: <span></span></p>
+          <p class="kompositor">Executive producer: <span></span></p>
 
         </div>
-      </main>
-    
-      <script type="module" src="/modules/layout.js"></script>
-      <script type="module" src="index.js"></script>
+
+        <div class="right">
+
+          <p class="genre_">Genre: <span>action, anim</span></p>
+          <p class="revenue">Revenue: <span></span></p>
+          <p class="budget">Budget: <span></span></p>
+          <p class="runtime">Runtime: <span></span></p>
+          <p class="status">Status: <span></span></p>
+          <p class="production_companies">Production companies: <span></span></p>
+
+        </div>
+      </div>
+
+      <div class="main_roles">
+        <div class="headline">
+  
+          <h2 class="title">Main roles</h2>
+          <div class="all_trailer">
+            <p>All actors</p>
+            <img src="/public/arrow1.svg" alt="rightarrow">
+          </div>
+        </div>
+
+        <div class="actors_cards">
+          
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </main>
+  <!-- <footer>
+        <section class="section_form">
+        </section>
+      </footer> -->
+
+  <script type="module" src="/modules/layout.js"></script>
+  <script type="module" src="/modules/footer.js"></script>
+  <script type="module" src="index.js"></script>
 </body>
+
 </html>

@@ -6,7 +6,6 @@ glavStr.onclick = () => {
     location.assign('/')
 }
 
-
 // fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', headerApi())
 //     .then((res) => res.json())
 //     .then((res) => console.log(res.results))
@@ -24,7 +23,6 @@ fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, headerApi(
 
 
 function card_info(movieData) {
-
 
     const bg = document.querySelector('.bg')
     const info = document.querySelector('.about_movie')
@@ -62,13 +60,13 @@ function card_info(movieData) {
     }
     let likeColorFlag = false
     let dislikeColorFlag = false
-    
+
     like_finger.onclick = () => {
         if (!likeColorFlag && !dislikeColorFlag) {
-            like_finger_svg.style.fill = "#ffff" 
+            like_finger_svg.style.fill = "#ffff"
             likeColorFlag = true
         } else if (likeColorFlag) {
-            like_finger_svg.style.fill = "#b0b6b0fd" 
+            like_finger_svg.style.fill = "#b0b6b0fd"
             likeColorFlag = false
         } else if (dislikeColorFlag) {
             like_finger_svg.style.fill = "#ffff"
@@ -77,24 +75,21 @@ function card_info(movieData) {
             dislikeColorFlag = false
         }
     }
-    
+
     dislike.onclick = () => {
         if (!likeColorFlag && !dislikeColorFlag) {
-            dislikeSvg.style.fill = "#ffff" 
+            dislikeSvg.style.fill = "#ffff"
             dislikeColorFlag = true
         } else if (dislikeColorFlag) {
-            dislikeSvg.style.fill = "#b0b6b0fd" 
+            dislikeSvg.style.fill = "#b0b6b0fd"
             dislikeColorFlag = false
         } else if (likeColorFlag) {
-            dislikeSvg.style.fill = "#ffff" // Переключение на dislike с like_finger
+            dislikeSvg.style.fill = "#ffff"
             like_finger_svg.style.fill = "#b0b6b0fd"
             dislikeColorFlag = true
             likeColorFlag = false
         }
     }
-    
-    
-
 
     like.onclick = () => {
         let svgElement = document.querySelector('.like svg')
@@ -111,6 +106,7 @@ function card_info(movieData) {
                 <h2 class="title">${movieData.title}</h2>
                 <p class="origin_title">${movieData.original_title}</p>
                     <div class="chart_div">
+                    <span class="ra">${movieData.vote_average}</span>
                     <canvas class="chart"></canvas>
                     </div>
 
@@ -120,13 +116,14 @@ function card_info(movieData) {
                     <button class="whatch_trailer">Whatch trailer</button>
 
         `
-
+    let ch_viv = document.querySelector('.chart_div')
+    ch_viv.style.background = "#51d44590"
 
 }
 
 function createChart(voteAverage) {
     const chartElement = document.querySelector('.chart')
-    let chartBackgroundColor = ['#07ff0bfd', '#51d44590']
+    let chartBackgroundColor = ['#17e903cb', '#1aff0500']
 
     if (voteAverage < 2) {
         chartBackgroundColor = ['#ff3007e3', '#ff3007a3']
@@ -142,7 +139,7 @@ function createChart(voteAverage) {
         chartBackgroundColor = ['#49ff07a3', '#49ff0768']
     } else if (voteAverage <= 8) {
         chartBackgroundColor = ['#00cc00', '#51d44590']
-    } 
+    }
 
     const chartData = {
         datasets: [{
@@ -178,8 +175,6 @@ function createChart(voteAverage) {
 }
 
 
-// ... (your existing code)
-
 fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, headerApi())
     .then((res) => res.json())
     .then((movieData) => {
@@ -189,3 +184,58 @@ fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, headerApi(
     .catch((error) => {
         console.error('Error fetching movie data:', error)
     })
+
+// https://api.themoviedb.org/3/movie/{movie_id}
+fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US&page=1`, headerApi())
+    .then((res) => res.json())
+    .then((movieData) => console.log(movieData))
+
+let genre_ = document.querySelector('.genre_ span')
+let revenue = document.querySelector('.revenue span')
+let budget = document.querySelector('.budget span')
+let runtime = document.querySelector('.runtime span')
+let status = document.querySelector('.status span')
+let production_companies = document.querySelector('.production_companies span')
+
+let release_date = document.querySelector('.release_date span')
+let production_countries = document.querySelector('.production_countries span')
+let tagline = document.querySelector('.tagline span')
+
+let author = document.querySelector('.author span')
+let produser = document.querySelector('.produser span')
+let kompositor = document.querySelector('.kompositor span')
+
+fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, headerApi())
+  .then((res) => res.json())
+  .then((movieData) => {
+    genre_.innerHTML = movieData.genres.map(genre => genre.name).join(', ')
+    revenue.innerHTML = `${movieData.revenue} $` 
+    budget.innerHTML = `${movieData.budget} $`
+    runtime.innerHTML = `${movieData.runtime} min`
+    status.innerHTML = movieData.status
+    production_companies.innerHTML = movieData.production_companies.map(company => company.name).join(', ')
+    release_date.innerHTML = movieData.release_date
+    production_countries.innerHTML = movieData.production_countries.map(country => country.name).join(', ')
+    tagline.innerHTML = movieData.tagline
+  })
+
+
+function fillCreditsData(movieId) {
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US&page=1`, headerApi())
+      .then((res) => res.json())
+      .then((creditsData) => {
+        // Найдем информацию о режиссере (Director), продюсере (Producer) и композиторе (Composer)
+        const director = creditsData.crew.find(member => member.job === 'Director')
+        const producer = creditsData.crew.find(member => member.job === 'Producer')
+        const composer = creditsData.crew.find(member => member.job === 'Executive Producer')
+  
+        author.innerHTML = director ? director.name : 'Н/Д'
+        produser.innerHTML = producer ? producer.name : 'Н/Д'
+        kompositor.innerHTML = composer ? composer.name : 'Н/Д'
+      })
+      .catch((error) => {
+        console.error('Ошибка при получении данных:', error)
+      })
+  }
+  
+  fillCreditsData(movieId)
