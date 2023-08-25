@@ -332,3 +332,143 @@ function movieActors(arr) {
         })
     
 
+// https://api.themoviedb.org/3/movie/movie_id/images
+fetch(`https://api.themoviedb.org/3/movie/${movieId}/images`, headerApi())
+    .then((res) => res.json())
+    .then((movieData) => {
+        otherPoster(movieData.posters)
+    })
+
+function otherPoster(arr) {
+    let viewBox = document.querySelector('.same_box')
+    viewBox.innerHTML = ''
+
+    const minPosterCount = 4 
+
+    for (let i = 0; i < minPosterCount; i++) {
+        let div = document.createElement('div')
+        div.classList.add('item')
+
+        if (i < arr.length && arr[i].file_path) {
+            div.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${arr[i].file_path})`;
+        } else {
+            div.style.backgroundImage = `url(/public/no.svg)`
+        }
+
+        viewBox.append(div)
+    }
+}
+
+
+// https://api.themoviedb.org/3/movie/${movie_id}/images?api_key={your_api_key}
+
+fetch(`https://api.themoviedb.org/3/movie/${movieId}/images`, headerApi())
+    .then((res) => res.json())
+    .then((movieData) => {
+        filmStills(movieData)
+    })
+
+function filmStills(data) {
+    let stillBox = document.querySelector('.stills_box')
+    stillBox.innerHTML = ''
+
+    const minBackdropCount = 6
+
+    for (let i = 0; i < minBackdropCount; i++) {
+        let div = document.createElement('div')
+        div.classList.add('item_stills')
+
+        if (i < data.backdrops.length && data.backdrops[i].file_path) {
+            div.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${data.backdrops[i].file_path})`
+        } else {
+            div.style.backgroundImage = `url(/public/no.svg)`
+        }
+
+        stillBox.append(div)
+    }
+}
+
+
+
+//SIMILR FILMS
+
+fetch('https://api.themoviedb.org/3/genre/movie/list', headerApi())
+  .then(res => res.json())
+  .then(apiGenresData => {
+    apiGenres = apiGenresData.genres
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1`, headerApi())
+      .then(res => res.json())
+      .then(res => {
+        movies = res.results
+        similarFilms(movies, apiGenres)
+      })
+  })
+
+  let apiGenres = []
+let movies = []
+
+function similarFilms(arr, apiGenres) {
+    
+  let nov = document.querySelector('.similar_box')
+  nov.innerHTML = ''
+
+  for (let item of arr) {
+    
+    
+    let filmContainer = document.createElement('div')
+    filmContainer.classList.add('c')
+
+    let itemContainer = document.createElement('div')
+    itemContainer.classList.add('item')
+   
+    if (item.poster_path) {
+        itemContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.poster_path})`
+    } else {
+        itemContainer.style.backgroundImage = `url(/public/no.svg)`
+    }
+
+    let ratingSpan = document.createElement('span')
+    ratingSpan.classList.add('rating')
+    ratingSpan.innerHTML = item.vote_average
+    itemContainer.append(ratingSpan)
+
+    let kDiv = document.createElement('div')
+    kDiv.classList.add('k')
+
+    let infoMovieDiv = document.createElement('div')
+    infoMovieDiv.classList.add('info_movie')
+    infoMovieDiv.innerHTML = '<p>Movie info</p>'
+
+    infoMovieDiv.onclick = () => {
+      const movieId = item.id
+      location.assign(`/pages/movie_info/?id=${movieId}`)
+    }
+
+    kDiv.append(infoMovieDiv)
+    itemContainer.append(kDiv)
+    filmContainer.append(itemContainer)
+
+    let textDiv = document.createElement('div')
+    textDiv.classList.add('text')
+
+    let nameMovieP = document.createElement('p')
+    nameMovieP.classList.add('name_movie')
+    nameMovieP.innerHTML = item.title
+    textDiv.append(nameMovieP)
+
+    let genreSpan = document.createElement('span')
+    genreSpan.classList.add('genre_item')
+
+    let genres = []
+    for (let genre of apiGenres) {
+      if (item.genre_ids.includes(genre.id)) {
+        genres.push(genre.name)
+      }
+    }
+    genreSpan.innerHTML = genres.join(', ')
+
+    textDiv.append(genreSpan)
+    filmContainer.append(textDiv)
+    nov.append(filmContainer)
+  }
+}
