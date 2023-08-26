@@ -14,13 +14,13 @@
     "Open Sans",
     "Helvetica Neue",
     sans-serif;
-  }
-  html {
-    scroll-behavior: smooth;
-  }
-  body {
-    position: relative;
-    background: #1e2538;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  position: relative;
+  background: #1e2538;
 }
 
 ::-webkit-scrollbar {
@@ -80,7 +80,7 @@ img {
   }
   .main_logo {
     margin-bottom: 5px;
-    cursor:pointer
+    cursor: pointer;
   }
   .social {
     display: flex;
@@ -719,8 +719,7 @@ footer {
         border: none;
         outline: none;
         padding: 10px;
-        margin:  0 0 10px 0;
-
+        margin: 0 0 10px 0;
       }
       .btn_sub {
         width: 20%;
@@ -731,20 +730,19 @@ footer {
         font-weight: 400;
         cursor: pointer;
         font-size: 18px;
-        margin:  0 0 10px 0;
+        margin: 0 0 10px 0;
       }
       i {
         color: #f2f60f;
         cursor: pointer;
       }
       .ch {
-        margin-right: 10px ;
+        margin-right: 10px;
       }
     }
-    
   }
   .form_social {
-    margin:  0 0 0 43%;
+    margin: 0 0 0 43%;
   }
   .social {
     display: flex;
@@ -764,7 +762,6 @@ footer {
     a {
       text-decoration: none;
       color: white;
-
     }
   }
   .create_date {

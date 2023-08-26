@@ -1,0 +1,149 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    position: relative;
+    background: #1e2538;
+}
+// border-radius: 10px;
+// background: #191E2E;
+
+.user_profile {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: center;
+    margin: 0 0 20px 0;
+    padding: 20px;
+    color: #fff;
+
+    .navigate {
+        display: flex;
+        gap: 12px;
+        flex-direction: column;
+
+        .item_nav {
+            width: 85px;
+            height: 85px;
+            border-radius: 5px;
+            background: #191e2e;
+            cursor: pointer;
+            text-align: center;
+            padding: 25px;
+            transition: 0.5s ease;
+        }
+        .item_nav_active {
+            background: #03248e;
+        }
+    }
+    .view_profile {
+        height: 665px;
+        border-radius: 10px;
+        background: #191e2e;
+        width: 100%;
+
+        .title_profile {
+            font-size: 35px;
+            font-weight: 600;
+            color: #fff;
+            padding: 17px 0 10px 35px;
+        }
+
+        .count {
+            display: flex;
+            justify-content: start;
+            gap: 20px;
+            padding: 22px 0 0 40px;
+            .fav {
+                width: 100px;
+                text-align: center;
+                width: 100px;
+                height: 100px;
+                padding: 3px;
+                font-size: 28px;
+                /* background: #fbdd00; */
+                border-radius: 8px;
+            }
+            .films {
+                text-align: center;
+                width: 100px;
+                height: 100px;
+                padding: 3px;
+                font-size: 28px;
+                /* background: #fbdd00; */
+                border-radius: 8px;
+            }
+        }
+
+        .profile_box {
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .set {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px 0 0;
+
+            .setting {
+                border-radius: 5px;
+                background: #1e2538;
+                width: 115px;
+                text-align: center;
+                padding: 6px;
+                height: 36px;
+                font-size: 18px;
+                font-weight: 500;
+                cursor: pointer;
+            }
+        }
+        .ava {
+            height: 375px;
+            width: 375px;
+            background: #19eb4a;
+            border-radius: 8px;
+            margin: 0 0 0 10px;
+        }
+        .info_frofile {
+            h2 {
+                text-align: left;
+                font-size: 45px;
+                font-weight: 500;
+                // width: 50%;
+            }
+            .t {
+                width: 475px;
+                margin: 12px 0 20px 0;
+            }
+        }
+
+        .i_f {
+            display: flex;
+            gap: 45px;
+            line-height: 2;
+
+            p {
+                font-size: 20px;
+                letter-spacing: 1px;
+                font-weight: 500;
+            }
+
+            .gender,
+            .birthday,
+            .country,
+            .city,
+            .favorite_genre {
+                color: #fbdd00;
+                font-weight: 300;
+                white-space: nowrap;
+            }
+        }
+    }
+}
