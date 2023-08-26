@@ -1,6 +1,7 @@
 import { headerApi } from "/modules/http.js"
 
 let glavStr = document.querySelector('.main_logo')
+let titleName = document.querySelector('title')
 
 glavStr.onclick = () => {
     location.assign('/')
@@ -113,7 +114,7 @@ function card_info(movieData) {
                     <div class="about_text">
                         <p class="inform">${movieData.overview}</p>
                     </div>
-                    <button class="whatch_trailer">Whatch trailer</button>
+                    <button class="whatch_trailer"><a href="#showtrailer">Whatch trailer</a></button>
 
         `
     let ch_viv = document.querySelector('.chart_div')
@@ -208,6 +209,7 @@ let kompositor = document.querySelector('.kompositor span')
 fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, headerApi())
     .then((res) => res.json())
     .then((movieData) => {
+        titleName.innerHTML = movieData.title
         genre_.innerHTML = movieData.genres.map(genre => genre.name).join(', ')
         revenue.innerHTML = `${movieData.revenue} $`
         budget.innerHTML = `${movieData.budget} $`
@@ -268,9 +270,10 @@ function movieActors(arr) {
         
         item_div.onclick = () => {
             const movieId = item.id
-            location.assign(`/pages/actor_info/?id=${movieId}`)
+            window.open(`/pages/actor_info/?id=${movieId}`, '_blank')
         }
 
+        
         if (item.profile_path) {
             item_div.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.profile_path})`
         } else {
@@ -387,7 +390,6 @@ function filmStills(data) {
         stillBox.append(div)
     }
 }
-
 
 
 //SIMILR FILMS

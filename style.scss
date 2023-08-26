@@ -193,6 +193,7 @@ img {
       cursor: pointer;
       font-size: 18px;
       font-weight: 400;
+      white-space: nowrap;
     }
   }
   .scroll::-webkit-scrollbar {
@@ -672,7 +673,7 @@ img {
 }
 footer {
   background: #151a26;
-  padding:  0 0 30px 0;
+  padding: 1px 0 30px 0;
 }
 .section_form {
   // height: 100%;

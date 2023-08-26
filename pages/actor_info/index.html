@@ -1,12 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" type="image/svg+xml" href="/public/movie1.png" />
+    <link rel="stylesheet" href="style.scss">
+    <link rel="stylesheet" href="/style.scss">
+    <link rel="stylesheet" href="/pages/movie_info/style.scss">
+    <title>Information about actor</title>
 </head>
+
 <body>
-    
-    <script type="module" src="/index.js"></script>
+
+    <div class="header-first">
+        <header>
+            <div class="container">
+            </div>
+        </header>
+    </div>
+    <main>
+        <div class="container">
+            <div class="box_about">
+                <div class="c">
+                    <div class="h">
+                        <div class="item"></div>
+                    </div>
+                </div>
+
+
+                <div class="about_movie">
+                    <h2 class="title name"></h2>
+                    <p class="origin_title name_n"></p>
+
+                    <div class="info_bio">
+                        <p>Information</p>
+                        <p class="info_no_active">Biografy</p>
+                    </div>
+
+                    <div class="text_info">
+                        <div class="left">
+
+                            <p class="">Popularity: </p>
+                            <p class="">Place of birth: </p>
+                            <p class="">Birthday: </p>
+                            <p class="">Deathday: </p>
+                            <p class="">Known for department: </p>
+
+                        </div>
+
+                        <div class="right">
+
+                            <p class="popularity">popularity:</p>
+                            <p class="place_of_birth">place_of_birth:</p>
+                            <p class="birthday">birthday: </p>
+                            <p class="deathday"> - </p>
+                            <p class="known_for_department">known_for_department:</p>
+
+
+                        </div>
+                    </div>
+
+                    <div class="biografy">
+                        <p></p>
+                    </div>
+
+                    <!-- <button class="whatch_trailer">Whatch trailer</button> -->
+                </div>
+
+            </div>
+
+            <div class="best_films">
+                <div class="headline">
+
+                    <h2 class="title">Best films</h2>
+                    <div class="all_trailer">
+                        <p>All films</p>
+                        <img src="/public/arrow1.svg" alt="rightarrow">
+                    </div>
+                </div>
+
+
+                <div class="best_filims_box">
+
+                </div>
+
+
+            </div>
+
+            <div class="fotos">
+                <div class="headline">
+
+                    <h2 class="title">Fotos</h2>
+                    <div class="all_trailer">
+                        <p>All fotos</p>
+                        <img src="/public/arrow1.svg" alt="rightarrow">
+                    </div>
+                </div>
+
+                
+                <div class="fotos_box"></div>
+            </div>
+
+
+
+
+        </div>
+    </main>
+
+    <footer>
+        <section class="section_form"></section>
+    </footer>
+
+    <script type="module" src="/modules/layout.js"></script>
+    <script type="module" src="/modules/footer.js"></script>
+    <script type="module" src="index.js"></script>
 </body>
+
 </html>

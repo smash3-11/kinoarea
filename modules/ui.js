@@ -300,8 +300,12 @@ function reloadPopPers(arr) {
     pers_name_p.innerHTML = arr[k].name
     pers_name_p.onclick = () => {
       const personeId = arr[k].id
-      location.assign(`/pages/actor_info/?id=${personeId}`)
+      // location.assign(`/pages/actor_info/?id=personeId${}`)
+      window.open(`/pages/actor_info/?id=${personeId}`, '_blank')
     }
+  //   item_div.onclick = () => {
+  //     const movieId = item.id
+  // }
 
     let pers_year_p = document.createElement('p')
     pers_year_p.classList.add('pers_year')
