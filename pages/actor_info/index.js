@@ -23,6 +23,53 @@ let biography =document.querySelector('.biografy p')
 const urlParams = new URLSearchParams(window.location.search)
 const personId = urlParams.get('id')
 
+
+
+let info = document.querySelector('.info')
+let text_info = document.querySelector('.text_info')
+let biografy = document.querySelector('.biografy')
+let biog = document.querySelector('.biog')
+
+info.onclick = () => {
+    biografy.style.display = "none"
+    text_info.style.display = "flex"
+    biografy.classList.remove("active");
+    text_info.classList.add("active");
+    info.classList.remove("info_no_active");
+    biog.classList.add("info_no_active");
+}
+
+biog.onclick = () => {
+    biografy.style.display = "block"
+    text_info.style.display = "none"
+    
+    biografy.classList.add("fadeIn");
+    text_info.classList.remove("fadeIn");
+    biografy.classList.remove("fadeOut");
+    text_info.classList.add("fadeOut");
+    info.classList.add("info_no_active");
+    biog.classList.remove("info_no_active");
+}
+
+let like = document.querySelector('.btn')
+let svgElement = document.querySelector('.like svg')
+
+let savedActor = localStorage.getItem(`likeActor_${personId}`)
+if (savedActor === 'add_to_fav') {
+    svgElement.style.fill = 'red'
+}
+
+like.onclick = () => {
+    if (svgElement.style.fill === "red") {
+        svgElement.style.fill = "white"
+        localStorage.setItem(`likeActor_${personId}`, 'removeActorFromFavorites')
+    } else {
+        svgElement.style.fill = "red"
+        localStorage.setItem(`likeActor_${personId}`, 'add_to_fav')
+    }
+}
+
+
 fetch(`https://api.themoviedb.org/3/person/${personId}?language=en-US`, headerApi())
     .then((res) => res.json())
     .then((personData) => {

@@ -55,10 +55,10 @@ function card_info(movieData) {
     let hearLike = document.querySelector('.like svg')
     let movieId = movieData.id
 
-    let savedColor = localStorage.getItem(`likeColor_${movieId}`)
-    if (savedColor) {
-        hearLike.style.fill = savedColor
-    }
+    // let savedColor = localStorage.getItem(`likeMovie_${movieId}`)
+    // if (savedColor) {
+    //     hearLike.style.fill = savedColor
+    // }
     let likeColorFlag = false
     let dislikeColorFlag = false
 
@@ -92,16 +92,57 @@ function card_info(movieData) {
         }
     }
 
-    like.onclick = () => {
-        let svgElement = document.querySelector('.like svg')
-        if (svgElement.style.fill === "red") {
-            svgElement.style.fill = "white"
-            localStorage.setItem(`likeColor_${movieId}`, 'white')
-        } else {
-            svgElement.style.fill = "red"
-            localStorage.setItem(`likeColor_${movieId}`, 'red')
-        }
+    // like.onclick = () => {
+    //     let svgElement = document.querySelector('.like svg')
+    //     if (svgElement.style.fill === "red") {
+    //         svgElement.style.fill = "white"
+    //         localStorage.setItem(`likeMovie_${movieId}`, 'white')
+    //     } else {
+    //         svgElement.style.fill = "red"
+    //         localStorage.setItem(`likeMovie_${movieId}`, 'red')
+    //     }
+    // }
+
+    let likedMovies = [];
+
+    
+    const savedLikedMovies = localStorage.getItem('likedMovies');
+    if (savedLikedMovies) {
+        likedMovies = JSON.parse(savedLikedMovies);
+        
+        const likeElements = document.querySelectorAll('.like');
+        likeElements.forEach(likeElement => {
+            const svgElement = likeElement.querySelector('svg');
+            const movieId = likeElement.getAttribute('data-movie-id')
+            if (likedMovies.includes(movieId)) {
+                svgElement.style.fill = "white";
+            } else {
+                svgElement.style.fill = "red";
+            }
+        });
     }
+
+
+    like.onclick = () => {
+        let svgElement = document.querySelector('.like svg');
+        console.log('Current fill color:', svgElement.style.fill)
+        if (svgElement.style.fill === "red") {
+            svgElement.style.fill = "white";
+            const index = likedMovies.indexOf(movieId);
+            if (index !== -1) {
+                likedMovies.splice(index, 1);
+                localStorage.setItem('likedMovies', JSON.stringify(likedMovies));
+            }
+        } else {
+            svgElement.style.fill = "red";
+            if (!likedMovies.includes(movieId)) {
+                likedMovies.push(movieId);
+                localStorage.setItem('likedMovies', JSON.stringify(likedMovies));
+            }
+        }
+    };
+
+
 
     info.innerHTML = `
                 <h2 class="title">${movieData.title}</h2>
@@ -249,17 +290,17 @@ fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US&page
         movieActors(acData.cast)
     })
 
-    let showingAllPosters = false
+let showingAllPosters = false
 
 
 function movieActors(arr) {
     let actors_box = document.querySelector('.actors_cards')
     actors_box.innerHTML = ""
     let btn = document.querySelector('.btn_b')
-   
-    
-    
-  const toShow = showingAllPosters ? arr.length : 10
+
+
+
+    const toShow = showingAllPosters ? arr.length : 10
 
     for (let item of arr.slice(0, toShow)) {
         let item_act = document.createElement('div')
@@ -267,13 +308,13 @@ function movieActors(arr) {
 
         let item_div = document.createElement('div')
         item_div.classList.add('item_cards')
-        
+
         item_div.onclick = () => {
             const movieId = item.id
             window.open(`/pages/actor_info/?id=${movieId}`, '_blank')
         }
 
-        
+
         if (item.profile_path) {
             item_div.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.profile_path})`
         } else {
@@ -298,8 +339,8 @@ function movieActors(arr) {
 
         btn.innerHTML = showingAllPosters ? 'Hide' : 'Show All'
         btn.onclick = () => {
-          showingAllPosters = !showingAllPosters
-          movieActors(arr)
+            showingAllPosters = !showingAllPosters
+            movieActors(arr)
         }
 
         item_act.append(item_div)
@@ -308,32 +349,32 @@ function movieActors(arr) {
         item_act.append(orgName)
         actors_box.append(item_act)
 
-        
+
     }
 }
 
-    let iframe = document.querySelector('.item_video iframe')
-    let nextTrailer = document.querySelector('.change')
-    
-    fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos`, headerApi())
-        .then(res => res.json())
-        .then(res => {
-            if (res.results.length > 0) {
-                let videoKeys = res.results.map(result => result.key)
-                let currentVideoIndex = Math.floor(Math.random() * videoKeys.length)
-    
-                function changeVideo() {
-                    currentVideoIndex = (currentVideoIndex + 1) % videoKeys.length
-                    let videoKey = videoKeys[currentVideoIndex]
-                    iframe.src = `https://www.youtube.com/embed/${videoKey}`
-                }
-    
-                iframe.src = `https://www.youtube.com/embed/${videoKeys[currentVideoIndex]}`
-    
-                nextTrailer.ondblclick = changeVideo
+let iframe = document.querySelector('.item_video iframe')
+let nextTrailer = document.querySelector('.change')
+
+fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos`, headerApi())
+    .then(res => res.json())
+    .then(res => {
+        if (res.results.length > 0) {
+            let videoKeys = res.results.map(result => result.key)
+            let currentVideoIndex = Math.floor(Math.random() * videoKeys.length)
+
+            function changeVideo() {
+                currentVideoIndex = (currentVideoIndex + 1) % videoKeys.length
+                let videoKey = videoKeys[currentVideoIndex]
+                iframe.src = `https://www.youtube.com/embed/${videoKey}`
             }
-        })
-    
+
+            iframe.src = `https://www.youtube.com/embed/${videoKeys[currentVideoIndex]}`
+
+            nextTrailer.ondblclick = changeVideo
+        }
+    })
+
 
 // https://api.themoviedb.org/3/movie/movie_id/images
 fetch(`https://api.themoviedb.org/3/movie/${movieId}/images`, headerApi())
@@ -346,7 +387,7 @@ function otherPoster(arr) {
     let viewBox = document.querySelector('.same_box')
     viewBox.innerHTML = ''
 
-    const minPosterCount = 4 
+    const minPosterCount = 4
 
     for (let i = 0; i < minPosterCount; i++) {
         let div = document.createElement('div')
@@ -395,82 +436,82 @@ function filmStills(data) {
 //SIMILR FILMS
 
 fetch('https://api.themoviedb.org/3/genre/movie/list', headerApi())
-  .then(res => res.json())
-  .then(apiGenresData => {
-    apiGenres = apiGenresData.genres
-    fetch(`https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1`, headerApi())
-      .then(res => res.json())
-      .then(res => {
-        movies = res.results
-        similarFilms(movies, apiGenres)
-      })
-  })
+    .then(res => res.json())
+    .then(apiGenresData => {
+        apiGenres = apiGenresData.genres
+        fetch(`https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1`, headerApi())
+            .then(res => res.json())
+            .then(res => {
+                movies = res.results
+                similarFilms(movies, apiGenres)
+            })
+    })
 
-  let apiGenres = []
+let apiGenres = []
 let movies = []
 
 function similarFilms(arr, apiGenres) {
-    
-  let nov = document.querySelector('.similar_box')
-  nov.innerHTML = ''
 
-  for (let item of arr) {
-    
-    
-    let filmContainer = document.createElement('div')
-    filmContainer.classList.add('c')
+    let nov = document.querySelector('.similar_box')
+    nov.innerHTML = ''
 
-    let itemContainer = document.createElement('div')
-    itemContainer.classList.add('item')
-   
-    if (item.poster_path) {
-        itemContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.poster_path})`
-    } else {
-        itemContainer.style.backgroundImage = `url(/public/no.svg)`
+    for (let item of arr) {
+
+
+        let filmContainer = document.createElement('div')
+        filmContainer.classList.add('c')
+
+        let itemContainer = document.createElement('div')
+        itemContainer.classList.add('item')
+
+        if (item.poster_path) {
+            itemContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.poster_path})`
+        } else {
+            itemContainer.style.backgroundImage = `url(/public/no.svg)`
+        }
+
+        let ratingSpan = document.createElement('span')
+        ratingSpan.classList.add('rating')
+        ratingSpan.innerHTML = item.vote_average
+        itemContainer.append(ratingSpan)
+
+        let kDiv = document.createElement('div')
+        kDiv.classList.add('k')
+
+        let infoMovieDiv = document.createElement('div')
+        infoMovieDiv.classList.add('info_movie')
+        infoMovieDiv.innerHTML = '<p>Movie info</p>'
+
+        infoMovieDiv.onclick = () => {
+            const movieId = item.id
+            location.assign(`/pages/movie_info/?id=${movieId}`)
+        }
+
+        kDiv.append(infoMovieDiv)
+        itemContainer.append(kDiv)
+        filmContainer.append(itemContainer)
+
+        let textDiv = document.createElement('div')
+        textDiv.classList.add('text')
+
+        let nameMovieP = document.createElement('p')
+        nameMovieP.classList.add('name_movie')
+        nameMovieP.innerHTML = item.title
+        textDiv.append(nameMovieP)
+
+        let genreSpan = document.createElement('span')
+        genreSpan.classList.add('genre_item')
+
+        let genres = []
+        for (let genre of apiGenres) {
+            if (item.genre_ids.includes(genre.id)) {
+                genres.push(genre.name)
+            }
+        }
+        genreSpan.innerHTML = genres.join(', ')
+
+        textDiv.append(genreSpan)
+        filmContainer.append(textDiv)
+        nov.append(filmContainer)
     }
-
-    let ratingSpan = document.createElement('span')
-    ratingSpan.classList.add('rating')
-    ratingSpan.innerHTML = item.vote_average
-    itemContainer.append(ratingSpan)
-
-    let kDiv = document.createElement('div')
-    kDiv.classList.add('k')
-
-    let infoMovieDiv = document.createElement('div')
-    infoMovieDiv.classList.add('info_movie')
-    infoMovieDiv.innerHTML = '<p>Movie info</p>'
-
-    infoMovieDiv.onclick = () => {
-      const movieId = item.id
-      location.assign(`/pages/movie_info/?id=${movieId}`)
-    }
-
-    kDiv.append(infoMovieDiv)
-    itemContainer.append(kDiv)
-    filmContainer.append(itemContainer)
-
-    let textDiv = document.createElement('div')
-    textDiv.classList.add('text')
-
-    let nameMovieP = document.createElement('p')
-    nameMovieP.classList.add('name_movie')
-    nameMovieP.innerHTML = item.title
-    textDiv.append(nameMovieP)
-
-    let genreSpan = document.createElement('span')
-    genreSpan.classList.add('genre_item')
-
-    let genres = []
-    for (let genre of apiGenres) {
-      if (item.genre_ids.includes(genre.id)) {
-        genres.push(genre.name)
-      }
-    }
-    genreSpan.innerHTML = genres.join(', ')
-
-    textDiv.append(genreSpan)
-    filmContainer.append(textDiv)
-    nov.append(filmContainer)
-  }
 }
