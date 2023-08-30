@@ -176,7 +176,7 @@ function card_info(movieData) {
                     <div class="about_text">
                         <p class="inform">${movieData.overview}</p>
                     </div>
-                    <button class="whatch_trailer"><a href="#showtrailer">Whatch trailer</a></button>
+                    <a href="#showtrailer"><button class="whatch_trailer">Whatch trailer</button></a>
 
         `
     let ch_viv = document.querySelector('.chart_div')
