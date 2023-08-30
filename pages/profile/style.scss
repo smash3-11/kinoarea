@@ -199,7 +199,11 @@ body {
             height: 215px;
             width: 155px;
             border-radius: 8px;
-            background: #fbdd00;
+            // background: #fbdd00;
+        
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
         }
 
         .item_text {

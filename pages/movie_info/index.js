@@ -92,18 +92,7 @@ function card_info(movieData) {
         }
     }
 
-    // like.onclick = () => {
-    //     let svgElement = document.querySelector('.like svg')
-    //     if (svgElement.style.fill === "red") {
-    //         svgElement.style.fill = "white"
-    //         localStorage.setItem(`likeMovie_${movieId}`, 'white')
-    //     } else {
-    //         svgElement.style.fill = "red"
-    //         localStorage.setItem(`likeMovie_${movieId}`, 'red')
-    //     }
-    // }
-
-    let likedMovies = [];
+    let likedMovies = []
 
     
     const savedLikedMovies = localStorage.getItem('likedMovies');
@@ -123,24 +112,56 @@ function card_info(movieData) {
     }
 
 
+    // like.onclick = () => {
+    //     let svgElement = document.querySelector('.like svg');
+    //     console.log('Current fill color:', svgElement.style.fill)
+    //     if (svgElement.style.fill === "red") {
+    //         svgElement.style.fill = "white";
+    //         const index = likedMovies.indexOf(movieId);
+    //         if (index !== -1) {
+    //             likedMovies.splice(index, 1);
+    //             localStorage.setItem('likedMovies', JSON.stringify(likedMovies));
+    //         }
+    //     } else {
+    //         svgElement.style.fill = "red";
+    //         if (!likedMovies.includes(movieId)) {
+    //             likedMovies.push(movieId);
+    //             localStorage.setItem('likedMovies', JSON.stringify(likedMovies));
+    //         }
+    //     }
+    // }
+
+
     like.onclick = () => {
         let svgElement = document.querySelector('.like svg');
-        console.log('Current fill color:', svgElement.style.fill)
+        console.log('Current fill color:', svgElement.style.fill);
+    
         if (svgElement.style.fill === "red") {
             svgElement.style.fill = "white";
-            const index = likedMovies.indexOf(movieId);
+            const index = likedMovies.findIndex(movie => movie.id === movieId);
             if (index !== -1) {
                 likedMovies.splice(index, 1);
-                localStorage.setItem('likedMovies', JSON.stringify(likedMovies));
             }
         } else {
             svgElement.style.fill = "red";
-            if (!likedMovies.includes(movieId)) {
-                likedMovies.push(movieId);
-                localStorage.setItem('likedMovies', JSON.stringify(likedMovies));
+    
+            const movieInfo = {
+                id: movieId,
+                title: movieData.title,
+                original_title: movieData.original_title,
+                vote_average: movieData.vote_average,
+                poster_path: movieData.poster_path,
+                backdrop_path: movieData.backdrop_path,
+            }
+    
+            if (!likedMovies.some(movie => movie.id === movieId)) {
+                likedMovies.push(movieInfo);
             }
         }
+    
+        localStorage.setItem('likedMovies', JSON.stringify(likedMovies));
     };
+
 
 
 

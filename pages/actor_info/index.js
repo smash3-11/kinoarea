@@ -9,15 +9,15 @@ glavStr.onclick = () => {
 }
 
 
-let popularity =document.querySelector('.popularity')
-let profile_path =document.querySelector('.item')
+let popularity = document.querySelector('.popularity')
+let profile_path = document.querySelector('.item')
 let name = document.querySelector('.name')
 let deathday = document.querySelector('.deathday')
 let name_l = document.querySelector('.name_n')
-let place_of_birth =document.querySelector('.place_of_birth')
-let birthday =document.querySelector('.birthday')
-let known_for_department =document.querySelector('.known_for_department')
-let biography =document.querySelector('.biografy p')
+let place_of_birth = document.querySelector('.place_of_birth')
+let birthday = document.querySelector('.birthday')
+let known_for_department = document.querySelector('.known_for_department')
+let biography = document.querySelector('.biografy p')
 
 
 const urlParams = new URLSearchParams(window.location.search)
@@ -42,7 +42,7 @@ info.onclick = () => {
 biog.onclick = () => {
     biografy.style.display = "block"
     text_info.style.display = "none"
-    
+
     biografy.classList.add("fadeIn");
     text_info.classList.remove("fadeIn");
     biografy.classList.remove("fadeOut");
@@ -52,22 +52,25 @@ biog.onclick = () => {
 }
 
 let like = document.querySelector('.btn')
-let svgElement = document.querySelector('.like svg')
+// let svgElement = document.querySelector('.like svg')
 
-let savedActor = localStorage.getItem(`likeActor_${personId}`)
-if (savedActor === 'add_to_fav') {
-    svgElement.style.fill = 'red'
-}
+// let savedActor = localStorage.getItem(`likeActor_${personId}`)
+// if (savedActor === 'add_to_fav') {
+//     svgElement.style.fill = 'red'
+// }
 
-like.onclick = () => {
-    if (svgElement.style.fill === "red") {
-        svgElement.style.fill = "white"
-        localStorage.setItem(`likeActor_${personId}`, 'removeActorFromFavorites')
-    } else {
-        svgElement.style.fill = "red"
-        localStorage.setItem(`likeActor_${personId}`, 'add_to_fav')
-    }
-}
+// like.onclick = () => {
+//     if (svgElement.style.fill === "red") {
+//         svgElement.style.fill = "white"
+//         localStorage.setItem(`likeActor_${personId}`, 'removeActorFromFavorites')
+//     } else {
+//         svgElement.style.fill = "red"
+//         localStorage.setItem(`likeActor_${personId}`, 'add_to_fav')
+//     }
+// }
+
+
+
 
 
 fetch(`https://api.themoviedb.org/3/person/${personId}?language=en-US`, headerApi())
@@ -98,97 +101,159 @@ fetch(`https://api.themoviedb.org/3/person/${personId}?language=en-US`, headerAp
         } else {
             birthday.innerHTML = "-"
         }
-        
+
         name.innerHTML = personData.name
         titleName.innerHTML = personData.name
         name_l.innerHTML = personData.name
         known_for_department.innerHTML = personData.known_for_department
         biography.innerHTML = personData.biography
-        
-        
+
+
+
+        let likeActors = [];
+
+        const savedLikeActors = localStorage.getItem('likeActors');
+        if (savedLikeActors) {
+            likeActors = JSON.parse(savedLikeActors);
+
+            const likeElements = document.querySelectorAll('.btn');
+            likeElements.forEach(likeElement => {
+                const svgElement = likeElement.querySelector('svg');
+                const personId = likeElement.getAttribute('data-person-id');
+                if (likeActors.includes(personId)) {
+                    svgElement.style.fill = "white";
+                } else {
+                    svgElement.style.fill = "red";
+                }
+            });
+        }
+
+        like.onclick = () => {
+            let svgElement = document.querySelector('.like svg');
+            console.log('Current fill color:', svgElement.style.fill);
+
+            if (svgElement.style.fill === "red") {
+                svgElement.style.fill = "white";
+                const index = likeActors.findIndex(actor => actor.id === personId);
+                if (index !== -1) {
+                    likeActors.splice(index, 1);
+                }
+            } else {
+                svgElement.style.fill = "red";
+
+                const personInfo = {
+                    id: personId,
+                    profile_path: personData.profile_path,
+                    name: personData.name,
+                    date_of_birth: personData.birthday,
+                };
+
+                if (!likeActors.some(actor => actor.id === personId)) {
+                    likeActors.push(personInfo);
+                }
+            }
+
+            localStorage.setItem('likeActors', JSON.stringify(likeActors));
+        }
+
+
+
     })
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //BEST FILMS 
 
 fetch('https://api.themoviedb.org/3/genre/movie/list', headerApi())
-.then(res => res.json())
-.then(apiGenresData => {
-  apiGenres = apiGenresData.genres
-  fetch(`https://api.themoviedb.org/3/person/${personId}/movie_credits?language=en-US`, headerApi())
     .then(res => res.json())
-    .then(res => {
-        movies = res.cast 
-        bestFilms(movies, apiGenres)
+    .then(apiGenresData => {
+        apiGenres = apiGenresData.genres
+        fetch(`https://api.themoviedb.org/3/person/${personId}/movie_credits?language=en-US`, headerApi())
+            .then(res => res.json())
+            .then(res => {
+                movies = res.cast
+                bestFilms(movies, apiGenres)
+            })
     })
-})
 
 let apiGenres = []
 let movies = []
 
 function bestFilms(arr, apiGenres) {
-  
-let nov = document.querySelector('.best_filims_box')
-nov.innerHTML = ''
 
-for (let item of arr) {
-  
-  
-  let filmContainer = document.createElement('div')
-  filmContainer.classList.add('c')
+    let nov = document.querySelector('.best_filims_box')
+    nov.innerHTML = ''
 
-  let itemContainer = document.createElement('div')
-  itemContainer.classList.add('item')
- 
-  if (item.poster_path) {
-      itemContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.poster_path})`
-  } else {
-      itemContainer.style.backgroundImage = `url(/public/no.svg)`
-  }
+    for (let item of arr) {
 
-  let ratingSpan = document.createElement('span')
-  ratingSpan.classList.add('rating')
-  ratingSpan.innerHTML = item.vote_average
-  itemContainer.append(ratingSpan)
 
-  let kDiv = document.createElement('div')
-  kDiv.classList.add('k')
+        let filmContainer = document.createElement('div')
+        filmContainer.classList.add('c')
 
-  let infoMovieDiv = document.createElement('div')
-  infoMovieDiv.classList.add('info_movie')
-  infoMovieDiv.innerHTML = '<p>Movie info</p>'
+        let itemContainer = document.createElement('div')
+        itemContainer.classList.add('item')
 
-  infoMovieDiv.onclick = () => {
-    const movieId = item.id
-    location.assign(`/pages/movie_info/?id=${movieId}`)
-  }
+        if (item.poster_path) {
+            itemContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.poster_path})`
+        } else {
+            itemContainer.style.backgroundImage = `url(/public/no.svg)`
+        }
 
-  kDiv.append(infoMovieDiv)
-  itemContainer.append(kDiv)
-  filmContainer.append(itemContainer)
+        let ratingSpan = document.createElement('span')
+        ratingSpan.classList.add('rating')
+        ratingSpan.innerHTML = item.vote_average
+        itemContainer.append(ratingSpan)
 
-  let textDiv = document.createElement('div')
-  textDiv.classList.add('text')
+        let kDiv = document.createElement('div')
+        kDiv.classList.add('k')
 
-  let nameMovieP = document.createElement('p')
-  nameMovieP.classList.add('name_movie')
-  nameMovieP.innerHTML = item.title
-  textDiv.append(nameMovieP)
+        let infoMovieDiv = document.createElement('div')
+        infoMovieDiv.classList.add('info_movie')
+        infoMovieDiv.innerHTML = '<p>Movie info</p>'
 
-  let genreSpan = document.createElement('span')
-  genreSpan.classList.add('genre_item')
+        infoMovieDiv.onclick = () => {
+            const movieId = item.id
+            location.assign(`/pages/movie_info/?id=${movieId}`)
+        }
 
-  let genres = []
-  for (let genre of apiGenres) {
-    if (item.genre_ids.includes(genre.id)) {
-      genres.push(genre.name)
+        kDiv.append(infoMovieDiv)
+        itemContainer.append(kDiv)
+        filmContainer.append(itemContainer)
+
+        let textDiv = document.createElement('div')
+        textDiv.classList.add('text')
+
+        let nameMovieP = document.createElement('p')
+        nameMovieP.classList.add('name_movie')
+        nameMovieP.innerHTML = item.title
+        textDiv.append(nameMovieP)
+
+        let genreSpan = document.createElement('span')
+        genreSpan.classList.add('genre_item')
+
+        let genres = []
+        for (let genre of apiGenres) {
+            if (item.genre_ids.includes(genre.id)) {
+                genres.push(genre.name)
+            }
+        }
+        genreSpan.innerHTML = genres.join(', ')
+
+        textDiv.append(genreSpan)
+        filmContainer.append(textDiv)
+        nov.append(filmContainer)
     }
-  }
-  genreSpan.innerHTML = genres.join(', ')
-
-  textDiv.append(genreSpan)
-  filmContainer.append(textDiv)
-  nov.append(filmContainer)
-}
 }
 
 fetch(`https://api.themoviedb.org/3/person/${personId}/images`, headerApi())
@@ -201,7 +266,7 @@ function filmStills(data) {
     let fotos_box = document.querySelector('.fotos_box')
     fotos_box.innerHTML = ''
     const minBackdropCount = 6
-    
+
     for (let i = 0; i < minBackdropCount; i++) {
 
         let div = document.createElement('div')

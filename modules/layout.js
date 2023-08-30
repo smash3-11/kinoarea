@@ -64,10 +64,6 @@ function reloadHeader() {
     localStorage.removeItem('user_auth');
   }
 
-
-  // const API_KEY =
-  // "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMWQ1YmVhYWI3ZjE5MTQ1MGZjMWJkZDRiMzdkMWY5NiIsInN1YiI6IjY0ZDY2OThmYjZjMjY0MTE1NzUzMGE2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.YzGTpM88ooJL87p8jF172Ep3d_BUKgDCjEMcOM_ixz8"
-  // let loginBtn = document.querySelector('button')
   let userIMG = document.querySelector('.userava')
   let userFullName = document.querySelector('.username')
   let reqToken = ''
@@ -87,6 +83,8 @@ function reloadHeader() {
         if (res.success) {
           reqToken = res.request_token
           window.open(`https://www.themoviedb.org/auth/access?request_token=${res.request_token}`)
+          loginBtn.style.display = "none"
+          
         }
       })
   }

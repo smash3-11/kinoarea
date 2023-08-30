@@ -465,9 +465,8 @@ footer {
   .similar_box,
   .best_filims_box {
     display: flex;
-    justify-content: space-between;
     overflow-x: scroll;
-
+    justify-content: flex-start;
     transition: transform 0.5s ease-in-out;
     .item {
       height: 400px;

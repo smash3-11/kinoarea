@@ -170,7 +170,7 @@
           <div class="popular_box">
 
           </div>
-<!-- 
+          <!-- 
           <div class="carousel_pagin">
             <button class="left">-</button>
             <span class="cound">0</span>
@@ -471,7 +471,7 @@
       </section>
 
       <section class="section_form">
-        
+
       </section>
 
 
@@ -480,13 +480,95 @@
 
 
     </div>
-
-
-
-
-
-
   </footer>
+
+  <div class="modal-overlay">
+    <div class="modal">
+      <span class="close">&times;</span>
+      <div class="main_logo">
+        <img src="/public/cin.svg" alt="">
+        <img src="/public/Kinoarea.svg" alt="">
+      </div>
+      <div class="search_box">
+        <form action="#">
+          <input type="search" placeholder="что ищем..">
+          <button class="search-btn"><img src="/public/search2.svg" alt=""></button>
+        </form>
+
+      </div>
+
+      <div class="res">
+        <div class="item_res">
+          <div class="poster"></div>
+          <div class="text"></div>
+          <div class="rat"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <style>
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .modal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgb(179 172 172 / 59%);
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transform: translate(-50%, -60%);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    const searchButton = document.querySelector(".search-btn");
+    const modalOverlay = document.querySelector(".modal-overlay");
+    const modal = document.querySelector(".modal");
+    const closeButton = document.querySelector(".close");
+
+    searchButton.onclick = () => {
+      modalOverlay.style.display = "block";
+      setTimeout(function () {
+        modalOverlay.style.opacity = "1";
+        modal.style.opacity = "1";
+        modal.style.transform = "translate(-50%, -50%)";
+      }, 10);
+    }
+
+    closeButton.onclick = () => {
+      modalOverlay.style.opacity = "0";
+      modal.style.opacity = "0";
+      modal.style.transform = "translate(-50%, -60%)";
+      setTimeout(function () {
+        modalOverlay.style.display = "none";
+      }, 500);
+    }
+
+
+  </script>
 
 
   <script type="module" src="/main.js"></script>
