@@ -54,7 +54,7 @@ img {
   position: absolute;
   z-index: -1;
   top: 0;
-  // background: #e4e802;
+  // filter: blur(5px);
   opacity: 0.6;
   height: 100vh;
   transition: 0.5s ease-in;
@@ -63,12 +63,25 @@ img {
   background-size: cover;
   background-repeat: no-repeat;
   border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  // background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
-  box-shadow:
-    inset 0px -20px 20px 6px rgb(43 39 69 / 79%),
-    0px -12px 10px -10px rgb(37 16 235 / 41%);
 }
+
+.bg::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%; /* Размытие будет применяться к нижней половине */
+  // background: inherit; /* Наследуем фоновую картинку от родительского элемента */
+  // filter: drop-shadow(16px 16px 20px blue);
+  
+  z-index: -1;
+}
+
+
+
+
+
 
 .header-first,
 .header-second header {
@@ -604,7 +617,7 @@ img {
     background-repeat: no-repeat;
     background-size: cover !important;
     height: 450px;
-    width: 366px;
+    width: 412px;
     color: #ffff;
     background: #39414a;
     box-shadow: inset 0px -20px 20px 20px rgba(0, 0, 0, 0.52);
