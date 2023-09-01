@@ -159,7 +159,7 @@
             <h2 class="title">Popular films</h2>
             <div class="line"></div>
             <div class="scroll" id="yearContainer">
-              <span class="all_movies active_year">All</span>
+              <span class="all_movies active_genre">All</span>
               <span class="genre_active">Last 2022y</span>
               <span>Last 2021y</span>
 
@@ -167,16 +167,14 @@
 
           </div>
 
-          <div class="popular_box">
+          <div class="d">
+            <div class="popular_box">
 
+            </div>
+
+            <button class="scroll-button left-button">←</button>
+            <button class="scroll-button right-button">→</button>
           </div>
-          <!-- 
-          <div class="carousel_pagin">
-            <button class="left">-</button>
-            <span class="cound">0</span>
-            <span class="amound_cound">/9</span>
-            <button class="right">-</button>
-          </div> -->
 
         </section>
 
@@ -186,7 +184,7 @@
             <h2 class="title">Popular persons</h2>
             <!-- <div class="line"></div> -->
             <div class="scroll" id="weekle">
-              <span class="active_year">All year</span>
+              <span class="active_year active_genre">All year</span>
               <span>Last month</span>
               <span>Last week</span>
 
@@ -295,11 +293,11 @@
           <h2 class="title">Expected novelties</h2>
           <div class="line"></div>
           <div class="scroll" id="yearContainer">
-            <span class="all_movies active_year">All</span>
-            <span class="genre_active">Treiler</span>
-            <span>Treiler</span>
-            <span>Treiler</span>
-            <span>Treiler</span>
+            <span class="all_movies active_genre">All</span>
+            <span class="genre_active">Action</span>
+            <span>Adventure</span>
+            <span>Animation</span>
+            <span>Comedy</span>
 
           </div>
         </div>
@@ -542,38 +540,72 @@
       cursor: pointer;
     }
   </style>
-  <script>
-    const searchButton = document.querySelector(".search-btn");
-    const modalOverlay = document.querySelector(".modal-overlay");
-    const modal = document.querySelector(".modal");
-    const closeButton = document.querySelector(".close");
-
-    searchButton.onclick = () => {
-      modalOverlay.style.display = "block";
-      setTimeout(function () {
-        modalOverlay.style.opacity = "1";
-        modal.style.opacity = "1";
-        modal.style.transform = "translate(-50%, -50%)";
-      }, 10);
-    }
-
-    closeButton.onclick = () => {
-      modalOverlay.style.opacity = "0";
-      modal.style.opacity = "0";
-      modal.style.transform = "translate(-50%, -60%)";
-      setTimeout(function () {
-        modalOverlay.style.display = "none";
-      }, 500);
-    }
 
 
-  </script>
+<!-- 
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModalBtn">&times;</span>
+      <h2>Modal Content</h2>
+      <p>This is a modal window with a fade-in effect.</p>
+    </div>
+  </div>
+
+  <style>
+    .modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  animation-name: modalFade;
+  animation-duration: 0.5s;
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes modalFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+  </style> -->
 
 
-  <script type="module" src="/main.js"></script>
-  <script type="module" src="/modules/layout.js"></script>
-  <script type="module" src="/modules/footer.js"></script>
-  <script type="module" src="/modules/ui.js"></script>
+ 
+ <script type="module" src="/modules/layout.js"></script>
+ <script type="module" src="/modules/footer.js"></script>
+ <script type="module" src="/modules/ui.js"></script>
+ <script type="module" src="/main.js"></script>
 </body>
 
 </html>

@@ -97,7 +97,13 @@ fetch(`https://api.themoviedb.org/3/person/${personId}?language=en-US`, headerAp
             place_of_birth.innerHTML = "-"
         }
         if (personData.birthday) {
-            birthday.innerHTML = personData.birthday
+            const birthdayString = personData.birthday
+            const birthDate = new Date(birthdayString)
+            const currentDate = new Date()
+            const ageInMilliseconds = currentDate - birthDate
+            const ageInYears = ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25)
+            const roundedAge = Math.floor(ageInYears)
+            birthday.innerHTML = `${birthdayString} (Age: ${roundedAge})`
         } else {
             birthday.innerHTML = "-"
         }

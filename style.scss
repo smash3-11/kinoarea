@@ -55,6 +55,7 @@ img {
   z-index: -1;
   top: 0;
   // filter: blur(5px);
+  backdrop-filter: blur(10px);
   opacity: 0.6;
   height: 100vh;
   transition: 0.5s ease-in;
@@ -71,9 +72,7 @@ img {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 50%; /* Размытие будет применяться к нижней половине */
-  // background: inherit; /* Наследуем фоновую картинку от родительского элемента */
-  // filter: drop-shadow(16px 16px 20px blue);
+  height: 50%; 
   
   z-index: -1;
 }
@@ -136,10 +135,11 @@ img {
     position: relative;
 
     .confirm {
-      // display: none;
+      display: none;
     }
-    .login {
-      // display: none;
+    
+    .userava {
+      display: none;
     }
     details ul {
       list-style: none;
@@ -152,10 +152,9 @@ img {
       padding: 0;
     }
     details {
-      // top: 10px;
-      // right: 97px;
+      display: none;
       transition: height 0.3s ease;
-      // overflow: hidden;
+
     }
 
     /* Стили для заголовка summary */
@@ -175,7 +174,7 @@ img {
     }
 
     .login,
-    .comfirm {
+    .confirm {
       width: 115px;
       height: 40px;
       border: none;
@@ -265,11 +264,20 @@ img {
     display: none;
   }
 }
+
+.popular_films {
+  justify-content: space-between;
+  .scroll {
+    width: auto;
+  }
+}
+
 .active_genre {
   color: #f2f60f;
 }
 .popular_persons,
 .last_news {
+  // padding: 25px 0 0 0;
   justify-content: space-between;
   .scroll {
     width: 30%;
@@ -390,13 +398,43 @@ img {
   display: flex;
   justify-content: flex-start;
   overflow-x: scroll;
-  transition: transform 0.5s ease-in-out;
+  // transition: transform 0.5s ease-in-out;
+  scroll-behavior: smooth;
   
   .item {
     height: 400px;
     width: 250px;
   }
 }
+
+//SCROLL
+.d {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.scroll-button {
+  position: absolute;
+  padding: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.left-button {
+  left: 32%;
+  bottom: 0px;
+  font-size: 53px;
+  color: gray;
+}
+
+.right-button {
+  right: 32%;
+  bottom: 0px;
+  font-size: 53px;
+  color: white;
+}
+
 
 .box_office {
   .c {
@@ -739,7 +777,7 @@ img {
 }
 footer {
   background: #151a26;
-  padding: 1px 0 30px 0;
+  padding: 25px 0 30px 0;
 }
 .section_form {
   // height: 100%;

@@ -49,15 +49,16 @@ function reloadHeader() {
 
         <img class="userava" src="" alt="">
         `
-  // <p class="username"></p>
   container.append(logo_div, nav, acc_div)
 
 
+  let details = document.querySelector('details')
 
   let confirmBtn = document.querySelector('.confirm')
   let loginBtn = document.querySelector('.login')
   loginBtn.onclick = () => {
     loginBtn.style.display = "none"
+    confirmBtn.style.display = "block"
   }
   let looutgBtn = document.querySelector('.logout')
   looutgBtn.onclick = () => {
@@ -84,6 +85,7 @@ function reloadHeader() {
           reqToken = res.request_token
           window.open(`https://www.themoviedb.org/auth/access?request_token=${res.request_token}`)
           loginBtn.style.display = "none"
+          confirmBtn.style.display = "block"
           
         }
       })
@@ -105,9 +107,6 @@ function reloadHeader() {
       .then(res => {
         if (res.success) {
           localStorage.setItem('user_auth', JSON.stringify(res))
-
-          loginBtn.style.display = "none"
-          looutgBtn.style.display = "none"
           location.reload()
         }
       })
@@ -123,11 +122,85 @@ function reloadHeader() {
     })
       .then(res => res.json())
       .then(res => {
-        console.log(res)
+        // console.log(res)
+        loginBtn.style.display = "none"
+          confirmBtn.style.display = "none"
+          details.style.display = "block"
+          userIMG.style.display = "block"
         userIMG.src = `https://www.gravatar.com/avatar/${res.avatar.gravatar.hash}`
         userFullName.innerHTML = res.username
       })
   }
+
+
+// {/* <script> */}
+//   const openModalBtn = document.querySelector(".search-btn");
+// const modal = document.getElementById("modal");
+// const closeModalBtn = document.getElementById("closeModalBtn");
+
+// openModalBtn.addEventListener("click", () => {
+//   modal.style.display = "block";
+// });
+
+// closeModalBtn.addEventListener("click", () => {
+//   modal.style.display = "none";
+// });
+
+// window.addEventListener("click", (event) => {
+//   if (event.target === modal) {
+//     modal.style.display = "none";
+//   }
+// });
+
+// {/* </script> */}
+
+document.addEventListener("DOMContentLoaded", function() {
+  const searchButton = document.querySelector(".search-btn");
+  const modalOverlay = document.querySelector(".modal-overlay");
+  const modal = document.querySelector(".modal");
+  const closeButton = document.querySelector(".close");
+
+  searchButton.addEventListener("click", function() {
+    modalOverlay.style.display = "block";
+    setTimeout(function() {
+      modalOverlay.style.opacity = "1";
+      modal.style.opacity = "1";
+      modal.style.transform = "translate(-50%, -50%)";
+    }, 10);
+  });
+
+  closeButton.addEventListener("click", function() {
+    modalOverlay.style.opacity = "0";
+    modal.style.opacity = "0";
+    modal.style.transform = "translate(-50%, -60%)";
+    setTimeout(function() {
+      modalOverlay.style.display = "none";
+    }, 500);
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 reloadHeader()
