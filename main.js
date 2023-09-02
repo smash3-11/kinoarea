@@ -27,16 +27,3 @@ function updateButtonState() {
   }
 }
 
-
-// const searchButton = document.querySelector(".search-btn");
-// const modal = document.querySelector(".modal");
-// const closeButton = document.querySelector(".close");
-
-// searchButton.onclick = () => {
-//   modal.style.top = "0";
-//   console.log("ghjk");
-// }
-
-// closeButton.onclick = () => {
-//   modal.style.top = "-100%";
-// }
