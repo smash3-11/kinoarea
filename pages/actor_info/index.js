@@ -8,7 +8,6 @@ glavStr.onclick = () => {
     location.assign('/')
 }
 
-
 let popularity = document.querySelector('.popularity')
 let profile_path = document.querySelector('.item')
 let name = document.querySelector('.name')
@@ -52,25 +51,6 @@ biog.onclick = () => {
 }
 
 let like = document.querySelector('.btn')
-// let svgElement = document.querySelector('.like svg')
-
-// let savedActor = localStorage.getItem(`likeActor_${personId}`)
-// if (savedActor === 'add_to_fav') {
-//     svgElement.style.fill = 'red'
-// }
-
-// like.onclick = () => {
-//     if (svgElement.style.fill === "red") {
-//         svgElement.style.fill = "white"
-//         localStorage.setItem(`likeActor_${personId}`, 'removeActorFromFavorites')
-//     } else {
-//         svgElement.style.fill = "red"
-//         localStorage.setItem(`likeActor_${personId}`, 'add_to_fav')
-//     }
-// }
-
-
-
 
 
 fetch(`https://api.themoviedb.org/3/person/${personId}?language=en-US`, headerApi())
@@ -165,18 +145,6 @@ fetch(`https://api.themoviedb.org/3/person/${personId}?language=en-US`, headerAp
 
 
     })
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //BEST FILMS 

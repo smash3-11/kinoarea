@@ -179,9 +179,6 @@ function card_info(movieData) {
                     <a href="#showtrailer"><button class="whatch_trailer">Whatch trailer</button></a>
 
         `
-    let ch_viv = document.querySelector('.chart_div')
-    ch_viv.style.background = "#51d44590"
-
 }
 
 function createChart(voteAverage) {
