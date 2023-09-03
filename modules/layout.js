@@ -132,6 +132,29 @@ function reloadHeader() {
 }
 reloadHeader()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function showModal(apiGenres) {
   const modalOverlay = document.createElement("div")
   modalOverlay.classList.add("modal-overlay")
@@ -318,30 +341,30 @@ function showModal(apiGenres) {
 
 showModal()
 
-const searchButton = document.querySelector(".search-btn");
-const modalOverlay = document.querySelector(".modal-overlay");
-const modal = document.querySelector(".modal");
-const closeButton = document.querySelector(".close");
+const searchButton = document.querySelector(".search-btn")
+const modalOverlay = document.querySelector(".modal-overlay")
+const modal = document.querySelector(".modal")
+const closeButton = document.querySelector(".close")
 
 searchButton.onclick = () => {
-  document.body.classList.add("modal-open");
-  modalOverlay.style.display = "block";
+  document.body.classList.add("modal-open")
+  modalOverlay.style.display = "block"
   setTimeout(function () {
-    document.querySelector('input[type="search"]').value = "";
-    document.querySelector('.row_s').innerHTML = "";
-    document.querySelector('.row_s').style.opacity = '0';
-    modalOverlay.style.opacity = "1";
-    modal.style.opacity = "1";
-    modal.style.transform = "translate(-50%, -50%)";
-  }, 10);
-};
+    document.querySelector('input[type="search"]').value = ""
+    document.querySelector('.row_s').innerHTML = ""
+    document.querySelector('.row_s').style.opacity = '0'
+    modalOverlay.style.opacity = "1"
+    modal.style.opacity = "1"
+    modal.style.transform = "translate(-50%, -50%)"
+  }, 10)
+}
 
 closeButton.onclick = () => {
-  document.body.classList.remove("modal-open");
-  modalOverlay.style.opacity = "0";
-  modal.style.opacity = "0";
-  modal.style.transform = "translate(-50%, -60%)";
+  document.body.classList.remove("modal-open")
+  modalOverlay.style.opacity = "0"
+  modal.style.opacity = "0"
+  modal.style.transform = "translate(-50%, -60%)"
   setTimeout(function () {
-    modalOverlay.style.display = "none";
-  }, 500);
-};
+    modalOverlay.style.display = "none"
+  }, 500)
+}

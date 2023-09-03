@@ -4,12 +4,12 @@ const leftButton = document.querySelector('.left-button')
 const rightButton = document.querySelector('.right-button')
 
 leftButton.onclick = () => {
-  popularBox.scrollLeft -= 400
+  popularBox.scrollLeft -= 355
   updateButtonState()
 }
 
 rightButton.onclick = () => {
-  popularBox.scrollLeft += 400
+  popularBox.scrollLeft += 355
   updateButtonState()
 }
 
