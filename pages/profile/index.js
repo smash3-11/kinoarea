@@ -1,36 +1,4 @@
 
-// let home = document.querySelector('.home')
-// let friends = document.querySelector('.friends')
-// let comments = document.querySelector('.comments')
-// let likedis = document.querySelector('.likedis')
-// let recen = document.querySelector('.recen')
-// let film = document.querySelector('.film')
-// let favorite = document.querySelector('.favorite')
-// let title_profile = document.querySelector('.title_profile')
-
-
-// const itemNavs = document.querySelectorAll('.item_nav');
-
-// itemNavs.forEach(item => {
-//     item.onclick = () => {
-
-//         itemNavs.forEach(nav => {
-//             nav.classList.remove('item_nav_active');
-//         })
-
-//         item.classList.add('item_nav_active')
-//     }
-// })
-
-
-// title_profile.innerHTML = 'Your friends'
-// reviews
-// ratings
-// comments
-// movie list
-// cast list
-
-
 // import { API_KEY } from ".env";
 const API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NmQ0NzM4NDM1ODUyMjgxOTIyMjg3ZjFjYjYwMmJmZCIsInN1YiI6IjY0ZDY2ZTJkZDEwMGI2MDEzOTVjYWZkMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.u_iyqUwD44lJtSy9VLAf2XLBw6Hn25eg1wbGzunWSfE'
 

@@ -59,7 +59,7 @@ fetch(`https://api.themoviedb.org/3/person/${personId}?language=en-US`, headerAp
         if (personData.profile_path) {
             profile_path.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${personData.profile_path})`
         } else {
-            profile_path.style.backgroundImage = `url(/public/no.svg)`
+            profile_path.style.backgroundImage = `url(/no.svg)`
         }
         if (personData.deathday) {
             deathday.innerHTML = personData.deathday
@@ -181,7 +181,7 @@ function bestFilms(arr, apiGenres) {
         if (item.poster_path) {
             itemContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.poster_path})`
         } else {
-            itemContainer.style.backgroundImage = `url(/public/no.svg)`
+            itemContainer.style.backgroundImage = `url(/no.svg)`
         }
 
         let ratingSpan = document.createElement('span')
@@ -249,7 +249,7 @@ function filmStills(data) {
         if (i < data.profiles.length && data.profiles[i].file_path) {
             div.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${data.profiles[i].file_path})`
         } else {
-            div.style.backgroundImage = `url(/public/no.svg)`
+            div.style.backgroundImage = `url(/no.svg)`
         }
 
         fotos_box.append(div)

@@ -9,14 +9,14 @@ function reloadHeader() {
   logo_div.classList.add('logo')
   logo_div.innerHTML = `
        <div class="main_logo">
-        <img src="/public/cin.svg" alt="">
-        <img src="/public/Kinoarea.svg" alt="">
+        <img src="/cin.svg" alt="">
+        <img src="/Kinoarea.svg" alt="">
       </div>
       <div class="social">
-        <img src="/public/facebook.svg" alt="facebook">
-        <img src="/public/instagram.svg" alt="instagram">
-        <img src="/public/twitter.svg" alt="twitter">
-        <img src="/public/vkontakte.svg" alt="vkontakte">
+        <img src="/facebook.svg" alt="facebook">
+        <img src="/instagram.svg" alt="instagram">
+        <img src="/twitter.svg" alt="twitter">
+        <img src="/vkontakte.svg" alt="vkontakte">
       </div>
       `
   let nav = document.createElement('nav')
@@ -33,7 +33,7 @@ function reloadHeader() {
   let acc_div = document.createElement('div')
   acc_div.classList.add('profile')
   acc_div.innerHTML = `
-        <button class="search-btn"><img src="/public/search2.svg" alt=""></button>
+        <button class="search-btn"><img src="/search2.svg" alt=""></button>
         <button class="login">Войти</button> 
         <button class="confirm">Confirm</button> 
 
@@ -136,25 +136,6 @@ reloadHeader()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function showModal(apiGenres) {
   const modalOverlay = document.createElement("div")
   modalOverlay.classList.add("modal-overlay")
@@ -170,11 +151,11 @@ function showModal(apiGenres) {
   mainLogo.classList.add("main_logo")
 
   const logoImage1 = document.createElement("img")
-  logoImage1.src = "/public/cin.svg"
+  logoImage1.src = "/cin.svg"
   logoImage1.alt = ""
 
   const logoImage2 = document.createElement("img")
-  logoImage2.src = "/public/Kinoarea.svg"
+  logoImage2.src = "/Kinoarea.svg"
   logoImage2.alt = ""
 
   mainLogo.appendChild(logoImage1)
@@ -228,7 +209,7 @@ function showModal(apiGenres) {
             } else if (item.media_type === 'person' && item.profile_path) {
               poster.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.profile_path})`
             } else {
-              poster.style.backgroundImage = `url(/public/no.svg)`
+              poster.style.backgroundImage = `url(/no.svg)`
             }
 
             const text = document.createElement("div")
@@ -294,7 +275,7 @@ function showModal(apiGenres) {
       })
   }
   const searchImage = document.createElement("img")
-  searchImage.src = "/public/search2.svg"
+  searchImage.src = "/search2.svg"
   searchImage.alt = "searchmovie"
 
   searchButton.appendChild(searchImage)

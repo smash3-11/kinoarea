@@ -336,7 +336,7 @@ function movieActors(arr) {
         if (item.profile_path) {
             item_div.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.profile_path})`
         } else {
-            item_div.style.backgroundImage = `url(/public/no.svg)`
+            item_div.style.backgroundImage = `url(/no.svg)`
         }
 
         let char = document.createElement("p")
@@ -414,7 +414,7 @@ function otherPoster(arr) {
         if (i < arr.length && arr[i].file_path) {
             div.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${arr[i].file_path})`;
         } else {
-            div.style.backgroundImage = `url(/public/no.svg)`
+            div.style.backgroundImage = `url(/no.svg)`
         }
 
         viewBox.append(div)
@@ -443,7 +443,7 @@ function filmStills(data) {
         if (i < data.backdrops.length && data.backdrops[i].file_path) {
             div.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${data.backdrops[i].file_path})`
         } else {
-            div.style.backgroundImage = `url(/public/no.svg)`
+            div.style.backgroundImage = `url(/no.svg)`
         }
 
         stillBox.append(div)
@@ -485,7 +485,7 @@ function similarFilms(arr, apiGenres) {
         if (item.poster_path) {
             itemContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.poster_path})`
         } else {
-            itemContainer.style.backgroundImage = `url(/public/no.svg)`
+            itemContainer.style.backgroundImage = `url(/no.svg)`
         }
 
         let ratingSpan = document.createElement('span')
