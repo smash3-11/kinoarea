@@ -439,8 +439,6 @@ body.modal-open {
   }
 }
 
-
-
 .active_genre {
   color: #f2f60f;
 }
@@ -459,6 +457,10 @@ body.modal-open {
   border-radius: 1px;
 }
 @media (max-width: 425px) {
+  p {
+    font-size: 14px;
+  }
+
   .popular_films {
     h2 {
       font-size: 30px;
@@ -524,6 +526,11 @@ body.modal-open {
       background: #51d445;
       border-radius: 6px;
       color: white;
+      @media (max-width: 425px) {
+       
+          padding: 1px 8px;
+        
+      }
     }
   }
 
@@ -578,16 +585,21 @@ body.modal-open {
       font-style: normal;
       font-weight: 400;
     }
+    @media (max-width: 425px) {
+      .genre_item {
+        font-size: 11px;
+      }
+    }
   }
 
   @media (max-width: 425px) {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     .item {
-      height: 280px;
+      height: 245px;
     }
     .info_movie {
-      left: 10%;
+      left: 9%;
     }
   }
 }
@@ -607,8 +619,11 @@ body.modal-open {
 }
 
 @media (max-width: 425px) {
-  .popular_box, .novelties_box {
-
+  .genre_item {
+    font-size: 11px;
+  }
+  .popular_box,
+  .novelties_box {
     .item {
       height: 255px;
       width: 167px;
@@ -716,9 +731,8 @@ body.modal-open {
     font-size: 30px;
     font-weight: 500;
     color: white;
-    white-space: nowrap;
+    // white-space: nowrap;
   }
-  
 }
 .all_trailer,
 .all_news {
@@ -889,13 +903,12 @@ body.modal-open {
 }
 
 .person_info {
-  
   display: flex;
   align-items: center;
   gap: 20px;
   flex-direction: row-reverse;
   margin: 30px 0;
-  
+
   .rating_person,
   .pers_year {
     position: absolute;
@@ -964,22 +977,16 @@ body.modal-open {
   .ra {
     color: #f2f60f;
   }
-
-
-  
-  
 }
-@media (max-width: 425px) { 
+@media (max-width: 425px) {
   .person_info {
     display: block;
-    
-    .person_item {
-      width: 348px;
-      margin: 15px 0 0 0;
 
+    .person_item {
+      width: 318px;
+      margin: 15px 0 0 0;
     }
   }
-
 }
 
 .news_box {

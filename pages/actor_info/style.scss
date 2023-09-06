@@ -198,14 +198,13 @@ footer {
     }
 }
 
-.text_info {
+.in {
     display: flex;
     justify-content: space-around;
     align-items: start;
     gap: 50px;
     margin: 12px 0 20px 0;
-    color: #ffff;
-
+ 
     transition: 0.5s ease;
 
     .left {
@@ -236,6 +235,7 @@ footer {
             font-weight: 300;
         }
     }
+   
 }
 .info_bio {
     display: flex;

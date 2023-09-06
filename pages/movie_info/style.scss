@@ -39,7 +39,7 @@ html {
 //   bottom: 0;
 //   left: 0;
 //   width: 100%;
-//   height: 50%; 
+//   height: 50%;
 //   z-index: -1;
 //   filter: drop-shadow(1px -5px 8px blue) invert(75%);
 // }
@@ -178,6 +178,20 @@ a {
     cursor: pointer;
   }
 }
+@media (max-width: 425px) {
+  .box_about {
+    flex-direction: column;
+    margin-bottom: 20px;
+    .about_movie {
+      margin: 0px 0 0 0;
+      text-align: center;
+      width: 300px;
+      .chart_div {
+        margin-left: 100px;
+      }
+    }
+  }
+}
 footer {
   margin: 50px 0 0 0;
   padding-top: 50px;
@@ -211,6 +225,34 @@ footer {
       color: #fbdd00;
       font-weight: 300;
     }
+  }
+}
+@media (max-width: 425px) {
+  .text_info {
+    flex-direction: column;
+    gap: 0;
+
+    .right {
+      width: auto;
+    }
+    .left {
+      width: auto;
+    }
+  }
+  .in {
+    flex-direction: row;
+    text-align: left;
+
+    .right, .left {
+      width: 50%;
+      p {
+        font-size: 16px;
+      }
+    }
+    .right {
+      font-size: 14px;
+    }
+  
   }
 }
 .main_roles {
@@ -275,6 +317,19 @@ footer {
     }
   }
 }
+@media (max-width: 425px) {
+  .main_roles {
+    .actors_cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .item_cards {
+      height: 200px;
+    }
+    .btn_b {
+      margin-left: 35%;
+    }
+  }
+}
 
 .treiler_of_movie {
   .change {
@@ -298,6 +353,14 @@ footer {
     }
   }
 }
+@media (max-width: 425px) {
+  .treiler_of_movie {
+    .item_video {
+      height: 223px;
+      margin-bottom: 40px;
+    }
+  }
+}
 .same_box {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -312,6 +375,15 @@ footer {
   border-radius: 10px;
   margin: 0 0 10px 0;
   position: relative;
+}
+@media (max-width: 425px) {
+  .same_box {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  .item {
+    height: 223px;
+  }
 }
 
 .film_stills {
@@ -338,6 +410,52 @@ footer {
         grid-column: 3 / span 2;
       }
     }
+  }
+}
+@media (max-width: 425px) {
+  .film_stills {
+    .stills_box {
+      grid-template-columns: repeat(2, 1fr);
+
+      .item_stills {
+        height: 220px;
+        &:first-child {
+          grid-column: 1 / span 2;
+        }
+
+        &:nth-child(2) {
+          display: none;
+        }
+
+        &:nth-child(5) {
+          display: none;
+        }
+        &:nth-child(6) {
+          display: none;
+        }
+      }
+    }
+  }
+  .fotos_box {
+    grid-template-columns: repeat(2, 1fr);
+
+      .item_stills {
+        height: 220px;
+        &:first-child {
+          grid-column: 1 / span 2;
+        }
+
+        &:nth-child(2) {
+          display: none;
+        }
+
+        &:nth-child(5) {
+          display: none;
+        }
+        &:nth-child(6) {
+          display: none;
+        }
+      }
   }
 }
 
@@ -379,8 +497,6 @@ footer {
         position: absolute;
         right: 8px;
         top: 10px;
-        // width: 64px;
-        // height: 30px;
         padding: 4px 12px;
         background: #51d445;
         border-radius: 6px;
@@ -451,6 +567,23 @@ footer {
     .item {
       height: 400px;
       width: 250px;
+    }
+  }
+  @media (max-width: 425px) {
+    .similar_box,
+    .best_filims_box {
+      margin: 0;
+      .item {
+        height: 250px;
+        width: 150px;
+      }
+      .info_movie {
+        left: 5%;
+      }
+      .rating {
+        padding: 1px 8px;
+      }
+
     }
   }
 }
