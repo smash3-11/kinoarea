@@ -1,4 +1,4 @@
-let footer_section =  document.querySelector('.section_form')
+let footer_section = document.querySelector('.section_form')
 footer_section.innerHTML = `
 
 <div class="form_box">
@@ -7,7 +7,7 @@ footer_section.innerHTML = `
 </div>
 
 <div class="text_sub">
-  <h2 class="title">Подпишитесь на E-mail рассылку</h2>
+  <h2 class="title fz">Подпишитесь на E-mail рассылку</h2>
   <p>Если хотиет быть в курсе последних новостей и новинок кино - заполните форму ниже и оформите бесплатную
     E-mail рассылку! </p>
 </div>
@@ -18,8 +18,6 @@ footer_section.innerHTML = `
     <input type="checkbox" class="ch"><span>Соглашаюсь на условия <i> политики конфиденциальности</i></span>
   </form>
 </div>
-
-
 
 </div>
 <div class="form_social">
@@ -32,13 +30,13 @@ footer_section.innerHTML = `
 </div>
 
 <div class="menu">
-<a href="">Афиша</a>
-<a href="">Медиа</a>
-<a href="">Фильмы</a>
-<a href="">Актеры</a>
-<a href="">Новости</a>
-<a href="">Подборки</a>
-<a href="">Категории</a>
+<a href="#">Афиша</a>
+<a href="#">Медиа</a>
+<a href="#">Фильмы</a>
+<a href="#">Актеры</a>
+<a href="#">Новости</a>
+<a href="#">Подборки</a>
+<a href="#">Категории</a>
 </div>
 
 <div class="create_date">

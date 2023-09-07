@@ -164,6 +164,9 @@ function showModal(apiGenres) {
   const searchBox = document.createElement("div")
   searchBox.classList.add("search_box")
 
+  const form = document.createElement("form")
+  form.action = "#"
+
   const searchInput = document.createElement("input")
   searchInput.type = "search"
   searchInput.placeholder = "что ищем.."
@@ -171,108 +174,113 @@ function showModal(apiGenres) {
   const searchButton = document.createElement("button")
   searchButton.classList.add("search")
 
-  searchButton.onclick = () => {
+  form.onsubmit = (e) => {
+    e.preventDefault()
 
-    const query = document.querySelector('input[type="search"]').value
 
-    fetch(`https://api.themoviedb.org/3/search/multi?&query=${query}&include_adult=true`, headerApi())
-      .then((response) => response.json())
-      .then((data) => {
+    searchButton.onclick = () => {
 
-        console.log(data.results)
+      const query = document.querySelector('input[type="search"]').value
 
-        const rowS = document.querySelector('.row_s')
-        rowS.style.opacity = "1"
-        rowS.innerHTML = ''
+      fetch(`https://api.themoviedb.org/3/search/multi?&query=${query}&include_adult=true`, headerApi())
+        .then((response) => response.json())
+        .then((data) => {
 
-        if (data.results.length === 0) {
-          const noResultsMessage = document.createElement('p')
-          noResultsMessage.classList.add('no-results')
-          noResultsMessage.innerHTML = 'Nothing was found according to your request.'
-          rowS.appendChild(noResultsMessage)
-        } else {
+          console.log(data.results)
 
-          for (const item of data.results) {
-            const res = document.createElement('div')
-            res.classList.add('res')
+          const rowS = document.querySelector('.row_s')
+          rowS.style.opacity = "1"
+          rowS.innerHTML = ''
 
-            const itemRes = document.createElement("div")
-            itemRes.classList.add("item_res")
+          if (data.results.length === 0) {
+            const noResultsMessage = document.createElement('p')
+            noResultsMessage.classList.add('no-results')
+            noResultsMessage.innerHTML = 'Nothing was found according to your request.'
+            rowS.appendChild(noResultsMessage)
+          } else {
 
-            const g = document.createElement("div")
-            g.classList.add("g")
+            for (const item of data.results) {
+              const res = document.createElement('div')
+              res.classList.add('res')
 
-            const poster = document.createElement("div")
-            poster.classList.add("poster")
-            if (item.media_type === 'movie' && item.poster_path) {
-              poster.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.poster_path})`
-            } else if (item.media_type === 'person' && item.profile_path) {
-              poster.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.profile_path})`
-            } else {
-              poster.style.backgroundImage = `url(/no.svg)`
-            }
+              const itemRes = document.createElement("div")
+              itemRes.classList.add("item_res")
 
-            const text = document.createElement("div")
-            text.classList.add("text")
+              const g = document.createElement("div")
+              g.classList.add("g")
 
-            const titleItem = document.createElement("p")
-            titleItem.classList.add("title_item")
-            const title = item.title || item.name
-            const words = title.split(' ')
-            const truncatedTitle = words.slice(0, 4).join(' ')
-
-            titleItem.innerHTML = truncatedTitle
-
-            titleItem.onclick = () => {
-              if (item.media_type === 'movie') {
-                const movieId = item.id
-                location.assign(`/pages/movie_info/?id=${movieId}`)
-              } else if (item.media_type === 'person') {
-                const personId = item.id
-                location.assign(`/pages/actor_info/?id=${personId}`)
+              const poster = document.createElement("div")
+              poster.classList.add("poster")
+              if (item.media_type === 'movie' && item.poster_path) {
+                poster.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.poster_path})`
+              } else if (item.media_type === 'person' && item.profile_path) {
+                poster.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.profile_path})`
+              } else {
+                poster.style.backgroundImage = `url(/no.svg)`
               }
-            }
 
-            const genreItem = document.createElement("p")
-            genreItem.classList.add("genre_item")
+              const text = document.createElement("div")
+              text.classList.add("text")
 
-            if (item.media_type === 'movie') {
-              let genres = []
-              for (let genre of apiGenres) {
-                if (item.genre_ids.includes(genre.id)) {
-                  genres.push(genre.name)
+              const titleItem = document.createElement("p")
+              titleItem.classList.add("title_item")
+              const title = item.title || item.name
+              const words = title.split(' ')
+              const truncatedTitle = words.slice(0, 4).join(' ')
+
+              titleItem.innerHTML = truncatedTitle
+
+              titleItem.onclick = () => {
+                if (item.media_type === 'movie') {
+                  const movieId = item.id
+                  location.assign(`/pages/movie_info/?id=${movieId}`)
+                } else if (item.media_type === 'person') {
+                  const personId = item.id
+                  location.assign(`/pages/actor_info/?id=${personId}`)
                 }
               }
-              genreItem.innerHTML = genres.join(', ')
-            } else if (item.media_type === 'person') {
-              genreItem.innerHTML = 'Actor'
+
+              const genreItem = document.createElement("p")
+              genreItem.classList.add("genre_item")
+
+              if (item.media_type === 'movie') {
+                let genres = []
+                for (let genre of apiGenres) {
+                  if (item.genre_ids.includes(genre.id)) {
+                    genres.push(genre.name)
+                  }
+                }
+                genreItem.innerHTML = genres.join(', ')
+              } else if (item.media_type === 'person') {
+                genreItem.innerHTML = 'Actor'
+              }
+
+              text.appendChild(titleItem)
+              text.appendChild(genreItem)
+
+              g.appendChild(poster)
+              g.appendChild(text)
+
+              itemRes.appendChild(g)
+
+              const rat = document.createElement("div")
+              rat.classList.add("rat")
+              if (item.vote_average !== null && item.vote_average !== undefined) {
+                rat.innerHTML = item.vote_average
+              } else {
+                rat.style.display = "none"
+              }
+
+              itemRes.appendChild(rat)
+              res.appendChild(itemRes)
+              rowS.appendChild(res)
+
+              let v = document.querySelector(".view")
+              v.appendChild(rowS)
             }
-
-            text.appendChild(titleItem)
-            text.appendChild(genreItem)
-
-            g.appendChild(poster)
-            g.appendChild(text)
-
-            itemRes.appendChild(g)
-
-            const rat = document.createElement("div")
-            rat.classList.add("rat")
-            if (item.vote_average !== null && item.vote_average !== undefined) {
-              rat.innerHTML = item.vote_average
-            } else {
-              rat.style.display = "none"
-            }
-
-            itemRes.appendChild(rat)
-            res.appendChild(itemRes)
-            rowS.appendChild(res)
-
-            let v = document.querySelector(".view")
-            v.appendChild(rowS)
           }
-        }
-      })
+        })
+    }
   }
   const searchImage = document.createElement("img")
   searchImage.src = "/search2.svg"
@@ -280,8 +288,9 @@ function showModal(apiGenres) {
 
   searchButton.appendChild(searchImage)
 
-  searchBox.appendChild(searchInput)
-  searchBox.appendChild(searchButton)
+  searchBox.appendChild(form)
+  form.appendChild(searchInput)
+  form.appendChild(searchButton)
 
   const view = document.createElement("div")
   view.classList.add("view")
@@ -292,7 +301,7 @@ function showModal(apiGenres) {
   const moviesTitle = document.createElement("h3")
   moviesTitle.classList.add("search_active")
   moviesTitle.innerHTML = "Movies"
-  
+
   const personTitle = document.createElement("h3")
   personTitle.classList.add("search_active")
   personTitle.innerHTML = "Person"

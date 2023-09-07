@@ -14,13 +14,13 @@
 </head>
 
 <body>
-  <div class="header-first">
+  <!-- <div class="header-first">
     <header>
       <div class="container">
       </div>
     </header>
-  </div>
-  <!-- <div class="header-second">
+  </div> -->
+  <div class="header-second">
 
     <header>
       <div class="container">
@@ -70,7 +70,21 @@
 
 
     </header>
-  </div> -->
+  </div>
+
+  <script>
+    let btnMenu = document.querySelector('.btn_menu');
+let menu = document.querySelector ('.menu');
+
+
+btnMenu.addEventListener('click', function() {
+    btnMenu.classList.toggle('active');
+    menu.classList.toggle('active');
+})
+  </script>
+
+
+
   <div class="bg"></div>
   <main>
     <div class="container">
@@ -521,7 +535,7 @@
 
 
 
-  <script type="module" src="/modules/layout.js"></script>
+  <!-- <script type="module" src="/modules/layout.js"></script> -->
   <script type="module" src="/modules/footer.js"></script>
   <script type="module" src="/modules/ui.js"></script>
   <script type="module" src="/main.js"></script>
