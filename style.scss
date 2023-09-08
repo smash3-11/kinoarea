@@ -109,6 +109,9 @@ body.modal-open {
     transition:
       opacity 0.5s ease,
       transform 0.5s ease;
+      @media (max-width: 425px) {
+        width: 90%;
+      }
 
     .main_logo {
       text-align: center;
@@ -125,6 +128,7 @@ body.modal-open {
       form {
         display: flex;
         align-items: center;
+        width: 100%;
       }
       input {
         outline: none;
@@ -258,6 +262,9 @@ body.modal-open {
 .header-first,
 .header-second header {
   margin-bottom: 30px;
+  @media (max-width: 768px) {
+    margin-bottom: 0px;
+  }
   .container {
     padding-top: 16px;
     display: flex;
@@ -276,20 +283,6 @@ body.modal-open {
       height: 18px;
     }
   }
-  // .btn_menu {
-  //   display: block;
-  //   flex-direction: column;
-  //   gap: 5px;
-  //   border: none;
-  //   background: white;
-  // }
-
-  // .btn_menu span {
-  //   width: 40px;
-  //   height: 5px;
-  //   background: white;
-  //   border-radius: 10px;
-  // }
   .menu {
     display: flex;
     justify-content: space-between;
@@ -421,17 +414,21 @@ body.modal-open {
   }
 
   @media (max-width: 768px) {
+    .b {
+      height: 40px;
+    }
     .menu {
       /* display: none; */
       position: fixed;
       top: 0;
-      left: -100%;
+      left: -120%;
       bottom: 0;
       transition: 500ms;
+      z-index: 30;
 
-      background: rgba(0, 0, 0, 0.689);
+      background: #03142b;
       flex-direction: column;
-      padding: 100px 40px;
+      padding: 100px 42%;
     }
 
     .menu.active {
@@ -516,6 +513,7 @@ body.modal-open {
     .main_logo {
       white-space: nowrap;
       width: 100px;
+      margin-bottom: 0;
       img:first-child {
         height: 20px;
         width: 30px;
@@ -536,6 +534,83 @@ body.modal-open {
         padding: 5px;
       }
     }
+    .profile {
+      gap: 10px;
+      .login,
+      .confirm {
+        width: 100px;
+        height: 35px;
+      }
+
+      details summary {
+        // position: absolute;
+        font-size: 14px;
+        cursor: pointer;
+        white-space: nowrap;
+        padding: 2px;
+      }
+      details ul {
+        font-size: 14px;
+      }
+      .userava {
+        height: 25px;
+        width: 25px;
+      }
+    }
+  }
+}
+.header-first {
+  display: block;
+  header {
+    display: block;
+  }
+}
+.header-second {
+  display: none;
+  header {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-first {
+    display: none;
+    &header {
+      margin-bottom: 0;
+      display: none;
+    }
+  }
+  .header-second {
+    display: block;
+    header {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .header-first {
+    display: none;
+    header {
+      display: none;
+    }
+  }
+  .header-second {
+    display: block;
+    header {
+      display: block;
+    }
+  }
+}
+@media (max-width: 425px) {
+  .header-first {
+    display: none;
+    &header {
+      display: none;
+    }
+  }
+  .header-second header {
+    display: block;
   }
 }
 .genre,
@@ -568,6 +643,23 @@ body.modal-open {
   }
   .scroll::-webkit-scrollbar {
     display: none;
+  }
+  @media (max-width: 425px) {
+    gap: 0;
+    flex-wrap: wrap;
+    .title {
+      font-size: 35px;
+    }
+    .line {
+      display: none;
+    }
+    .scroll {
+      width: 100%;
+      gap: 10px;
+      span {
+        font-size: 16px;
+      }
+    }
   }
 }
 
@@ -737,6 +829,13 @@ body.modal-open {
     }
     .info_movie {
       left: 9%;
+    }
+  }
+}
+@media (max-width: 375px) {
+  .box {
+    .info_movie {
+      left: 6%;
     }
   }
 }

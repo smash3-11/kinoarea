@@ -2,6 +2,20 @@ import { headerApi } from "/modules/http.js"
 
 const API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NmQ0NzM4NDM1ODUyMjgxOTIyMjg3ZjFjYjYwMmJmZCIsInN1YiI6IjY0ZDY2ZTJkZDEwMGI2MDEzOTVjYWZkMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.u_iyqUwD44lJtSy9VLAf2XLBw6Hn25eg1wbGzunWSfE'
 
+function openModal() {
+  document.body.classList.add("modal-open");
+  modalOverlay.style.display = "block";
+  setTimeout(function () {
+    document.querySelector('input[type="search"]').value = "";
+    document.querySelector('.row_s').innerHTML = "";
+    document.querySelector('.row_s').style.opacity = '0';
+    modalOverlay.style.opacity = "1";
+    modal.style.opacity = "1";
+    modal.style.transform = "translate(-50%, -50%)";
+  }, 10);
+}
+
+
 function reloadHeader() {
   let container = document.querySelector("header .container")
 
@@ -50,21 +64,122 @@ function reloadHeader() {
         `
   container.append(logo_div, nav, acc_div)
 
+
+  //----------------SECOND HEADER----------------------
+
+  let h_second = document.querySelector('.header-second header .container')
+
+  let b = document.createElement('div')
+  b.classList.add('b')
+  let sidebar = document.createElement('div')
+  sidebar.classList.add('bottom_sidebar')
+
+  b.innerHTML = `
+  
+          <div class="btn_s">
+            <button class="btn_menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+            <button class="search-btn"><img src="/search2.svg" alt=""></button>
+          </div>
+
+          <div class="logo">
+            <div class="main_logo">
+              <img src="/cin.svg" alt="">
+              <img src="/Kinoarea.svg" alt="">
+            </div>
+            <div class="social">
+              <img src="/facebook.svg" alt="facebook">
+              <img src="/instagram.svg" alt="instagram">
+              <img src="/twitter.svg" alt="twitter">
+              <img src="/vkontakte.svg" alt="vkontakte">
+            </div>
+          </div>
+          <div class="profile">
+            <button class="login">Войти</button>
+            <button class="confirm">Confirm</button>
+
+            <details>
+              <summary class="username"></summary>
+              <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/pages/profile/">Профиль</a></li>
+                <li><a class="logout" href="/">Выйти</a></li>
+              </ul>
+            </details>
+
+            <img class="userava" src="" alt="">
+
+          </div>
+      
+  `
+  sidebar.innerHTML = `
+    
+  <nav class="menu">
+    <a href="">Афиша</a>
+    <a href="">Медиа</a>
+    <a href="">Фильмы</a>
+    <a href="">Актеры</a>
+    <a href="">Новости</a>
+    <a href="">Подборки</a>
+    <a href="">Категории</a>
+  </nav>
+  `
+
+
+  h_second.append(b, sidebar)
+  console.log(h_second);
+
+  const searchButtonHeaderSecond = document.querySelector('.header-second .search-btn');
+  searchButtonHeaderSecond.addEventListener('click', openModal);
+
+
+
+  let btnMenu = document.querySelector('.btn_menu');
+  let menu = document.querySelector('.menu');
+
+
+  btnMenu.addEventListener('click', function () {
+    btnMenu.classList.toggle('active');
+    menu.classList.toggle('active');
+  })
+
+  // ----------------LOG IN---------------------
+
   let details = document.querySelector('details')
+  let h_second_details = document.querySelector('.header-second details')
 
   let confirmBtn = document.querySelector('.confirm')
   let loginBtn = document.querySelector('.login')
+  let h_second_confirmBtn = document.querySelector('.header-second .confirm')
+  let h_second_loginBtn = document.querySelector('.header-second .login')
+
   loginBtn.onclick = () => {
     loginBtn.style.display = "none"
     confirmBtn.style.display = "block"
   }
+  h_second_loginBtn.onclick = () => {
+    h_second_loginBtn.style.display = "none"
+    h_second_confirmBtn.style.display = "block"
+  }
+
   let looutgBtn = document.querySelector('.logout')
+  let h_second_looutgBtn = document.querySelector('.header-second .logout')
+  
   looutgBtn.onclick = () => {
+    localStorage.removeItem('user_auth')
+  }
+
+  h_second_looutgBtn.onclick = () => {
     localStorage.removeItem('user_auth')
   }
 
   let userIMG = document.querySelector('.userava')
   let userFullName = document.querySelector('.username')
+  let h_second_userIMG = document.querySelector('.header-second .userava')
+  let h_second_userFullName = document.querySelector('.header-second .username')
   let reqToken = ''
 
   loginBtn.onclick = () => {
@@ -88,7 +203,49 @@ function reloadHeader() {
         }
       })
   }
+  h_second_loginBtn.onclick = () => {
+    fetch('https://api.themoviedb.org/4/auth/request_token', {
+      method: 'POST',
+      dataType: 'json',
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+        'Content-Type': "application/json"
+      },
+      start_time: new Date().getTime()
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.success) {
+          reqToken = res.request_token
+          window.open(`https://www.themoviedb.org/auth/access?request_token=${res.request_token}`)
+          h_second_loginBtn.style.display = "none"
+          h_second_confirmBtn.style.display = "block"
+
+        }
+      })
+  }
   confirmBtn.onclick = () => {
+    fetch(`https://api.themoviedb.org/4/auth/access_token`, {
+      method: 'POST',
+      dataType: 'json',
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+        'Content-Type': "application/json"
+      },
+      body: JSON.stringify({
+        request_token: reqToken
+      }),
+      start_time: new Date().getTime()
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.success) {
+          localStorage.setItem('user_auth', JSON.stringify(res))
+          location.reload()
+        }
+      })
+  }
+  h_second_confirmBtn.onclick = () => {
     fetch(`https://api.themoviedb.org/4/auth/access_token`, {
       method: 'POST',
       dataType: 'json',
@@ -126,6 +283,23 @@ function reloadHeader() {
         userIMG.style.display = "block"
         userIMG.src = `https://www.gravatar.com/avatar/${res.avatar.gravatar.hash}`
         userFullName.innerHTML = res.username
+      })
+  }
+  if (user_auth) {
+    fetch(`https://api.themoviedb.org/3/account/${user_auth?.account_id}`, {
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+        'Content-Type': "application/json"
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        h_second_loginBtn.style.display = "none"
+        h_second_confirmBtn.style.display = "none"
+        h_second_details.style.display = "block"
+        h_second_userIMG.style.display = "block"
+        h_second_userIMG.src = `https://www.gravatar.com/avatar/${res.avatar.gravatar.hash}`
+        h_second_userFullName.innerHTML = res.username
       })
   }
 

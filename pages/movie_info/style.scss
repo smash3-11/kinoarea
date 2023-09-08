@@ -243,7 +243,8 @@ footer {
     flex-direction: row;
     text-align: left;
 
-    .right, .left {
+    .right,
+    .left {
       width: 50%;
       p {
         font-size: 16px;
@@ -251,8 +252,10 @@ footer {
     }
     .right {
       font-size: 14px;
+      p:last-child {
+        display: none;
+      }
     }
-  
   }
 }
 .main_roles {
@@ -439,23 +442,23 @@ footer {
   .fotos_box {
     grid-template-columns: repeat(2, 1fr);
 
-      .item_stills {
-        height: 220px;
-        &:first-child {
-          grid-column: 1 / span 2;
-        }
-
-        &:nth-child(2) {
-          display: none;
-        }
-
-        &:nth-child(5) {
-          display: none;
-        }
-        &:nth-child(6) {
-          display: none;
-        }
+    .item_stills {
+      height: 220px;
+      &:first-child {
+        grid-column: 1 / span 2;
       }
+
+      &:nth-child(2) {
+        display: none;
+      }
+
+      &:nth-child(5) {
+        display: none;
+      }
+      &:nth-child(6) {
+        display: none;
+      }
+    }
   }
 }
 
@@ -583,7 +586,6 @@ footer {
       .rating {
         padding: 1px 8px;
       }
-
     }
   }
 }

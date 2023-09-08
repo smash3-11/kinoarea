@@ -3,7 +3,7 @@ footer_section.innerHTML = `
 
 <div class="form_box">
 <div class="main_logo">
-  <img src="/public/logotype.svg" alt="">
+  <img src="/logotype.svg" alt="">
 </div>
 
 <div class="text_sub">
@@ -22,10 +22,10 @@ footer_section.innerHTML = `
 </div>
 <div class="form_social">
 <div class="social">
-  <img src="/public/facebook.svg" alt="facebook">
-  <img src="/public/instagram.svg" alt="instagram">
-  <img src="/public/twitter.svg" alt="twitter">
-  <img src="/public/vkontakte.svg" alt="vkontakte">
+  <img src="/facebook.svg" alt="facebook">
+  <img src="/instagram.svg" alt="instagram">
+  <img src="/twitter.svg" alt="twitter">
+  <img src="/vkontakte.svg" alt="vkontakte">
 </div>
 </div>
 

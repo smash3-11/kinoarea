@@ -14,19 +14,18 @@
 </head>
 
 <body>
-  <!-- <div class="header-first">
+  <div class="header-first">
     <header>
       <div class="container">
       </div>
     </header>
-  </div> -->
+  </div>
   <div class="header-second">
 
     <header>
       <div class="container">
-
+<!-- 
         <div class="b">
-
 
           <div class="btn_s">
             <button class="btn_menu">
@@ -51,8 +50,22 @@
           </div>
           <div class="profile">
             <button class="login">Войти</button>
+            <button class="confirm">Confirm</button>
+
+            <details>
+              <summary class="username"></summary>
+              <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/pages/profile/">Профиль</a></li>
+                <li><a class="logout" href="/">Выйти</a></li>
+              </ul>
+            </details>
+
+            <img class="userava" src="" alt="">
+
           </div>
         </div>
+
         <div class="bottom_sidebar">
 
           <nav class="menu">
@@ -65,24 +78,11 @@
             <a href="">Категории</a>
           </nav>
 
-        </div>
+        </div> -->
       </div>
-
 
     </header>
   </div>
-
-  <script>
-    let btnMenu = document.querySelector('.btn_menu');
-let menu = document.querySelector ('.menu');
-
-
-btnMenu.addEventListener('click', function() {
-    btnMenu.classList.toggle('active');
-    menu.classList.toggle('active');
-})
-  </script>
-
 
 
   <div class="bg"></div>
@@ -535,7 +535,7 @@ btnMenu.addEventListener('click', function() {
 
 
 
-  <!-- <script type="module" src="/modules/layout.js"></script> -->
+  <script type="module" src="/modules/layout.js"></script>
   <script type="module" src="/modules/footer.js"></script>
   <script type="module" src="/modules/ui.js"></script>
   <script type="module" src="/main.js"></script>
